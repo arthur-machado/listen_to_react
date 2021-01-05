@@ -1,0 +1,21 @@
+a,
+.font-small {
+  color: #d6d6d6;
+  margin-left: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer {
+  position: fixed;
+  bottom: 0px;
+}
+
+#footer {
+  background-color: #0e0e0e;
+  width: 100%;
+  color: #d6d6d6;
+  padding: 10px 0px;
+  display: flex;
+  justify-content: center;
+}

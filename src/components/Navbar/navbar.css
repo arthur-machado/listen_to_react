@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap");
+
+/* Navbar na página Início */
+nav {
+  background-color: #fafafa;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 3.7rem;
+  box-shadow: 0px 2px 10px #00000066;
+  z-index: 1;
+}
+
+#nav-body-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding-top: 8px;
+}
+
+#nav-body-index .nav-title {
+  font-family: Allerta Stencil;
+  font-size: 33px;
+  color: #000000;
+  font-weight: normal;
+  transition: 0.5s;
+}
+
+#nav-body-index .nav-title:hover {
+  color: #777777;
+}
+
+/* Navbar nas outras páginas */
+#nav-body {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  padding: 7px 24px 8px;
+}
+
+#nav-body .wrapper-menu {
+  display: none;
+}
+
+#nav-body ul {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: 5.2rem;
+  margin: 0px 15rem 20rem;
+  top: 22px;
+}
+
+#nav-body ul li {
+  list-style-type: none;
+  padding: 0px 35px;
+  transition: 0.5s;
+}
+
+#nav-body ul li:hover {
+  color: #777777;
+  cursor: pointer;
+}
+
+#nav-body .nav-title {
+  font-family: Allerta Stencil;
+  font-size: 33px;
+  color: #000000;
+  font-weight: normal;
+  transition: 0.5s;
+}
+
+#nav-body .nav-title:hover {
+  color: #585858;
+}
+
+#nav-body .input-text {
+  width: 280px;
+  position: absolute;
+  height: 1.6rem;
+  top: -10px;
+  border-radius: 24px;
+  padding: 3px 20px;
+  border: 3px solid #585858;
+  background-color: #585858;
+  color: #ffffff;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+#nav-body .input-text:focus {
+  outline: none;
+  border: 3px solid #dadada;
+}
+
+.user-icon {
+  position: relative;
+  margin-left: 60%;
+  bottom: 3px;
+}
+
+@media (max-width: 988px) {
+  #nav-body {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+    padding: 7px 24px 8px;
+  }
+
+  #nav-body .wrapper-menu {
+    display: flex;
+    position: absolute;
+    top: 17px;
+    left: 25px;
+  }
+
+  #nav-body ul {
+    display: none;
+  }
+}
