@@ -6,10 +6,19 @@ import {
   BsChatSquareFill,
   BsGearFill,
   BsFillPersonFill,
-  BsList
+  BsList,
 } from "react-icons/bs";
+import WrapperMenu from "./WrapperMenu";
 
 class Navbar extends Component {
+  state = {
+    wrapperIsOpen: false,
+  };
+
+  toggle = () => {
+    this.setState({ wrapperIsOpen: !this.state.wrapperIsOpen });
+  };
+
   render() {
     return (
       // essa propriedade é passada para modificar a navbar
@@ -53,9 +62,10 @@ class Navbar extends Component {
               </li>
             </ul>
             <div className="wrapper-menu">
-              <BsList size={30} />
+              <BsList size={30} onClick={this.toggle} />
             </div>
           </div>
+          <WrapperMenu visible={this.state.wrapperIsOpen} />
         </nav>
       )
     );

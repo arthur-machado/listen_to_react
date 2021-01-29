@@ -49,8 +49,7 @@ nav {
   display: flex;
   flex-direction: row;
   position: absolute;
-  right: 5.2rem;
-  margin: 0px 15rem 20rem;
+  margin: 0px 12.6rem 20rem;
   top: 22px;
 }
 
@@ -117,6 +116,7 @@ nav {
     position: absolute;
     top: 17px;
     left: 25px;
+    cursor: pointer;
   }
 
   #nav-body ul {
