@@ -34,7 +34,7 @@ class Navbar extends Component {
       ) : (
         <nav id="nav">
           <div id="nav-body">
-            <a className="nav-title" href="/">
+            <a className="nav-title" href="/feed">
               Listen.to
             </a>
             <ul>

@@ -1,0 +1,73 @@
+.card {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  padding: 37px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 2rem;
+}
+
+iframe {
+  width: 285px;
+  min-height: 387px;
+  padding-top: 2.4rem;
+  padding-right: 135px;
+}
+
+.user-info {
+  position: relative;
+  top: -18px;
+  height: 3rem;
+  left: 75px;
+}
+
+#timestamp {
+  position: relative;
+  left: 92px;
+  display: inline;
+  top: -52px;
+  text-align: start;
+}
+
+#username {
+  position: relative;
+  left: 105px;
+  top: -58px;
+  font-weight: bold;
+  font-size: 18px;
+  padding-left: 1rem;
+  color: #363636;
+  display: inline-flex;
+}
+
+#user-photo {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  top: -7px;
+}
+
+.side-buttons {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  left: -22px;
+  top: 20px;
+  align-items: center;
+}
+
+.side-buttons ul {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-left: 0px;
+}
+
+.side-buttons ul svg {
+  padding: 22px 0px;
+  cursor: pointer;
+}

@@ -12,5 +12,6 @@ body {
 .content {
     background-color: #fafafa;
     width: 100vw;
-    height: 100vh;
+    height: 120vh;
+    padding-top: 3rem;
 }

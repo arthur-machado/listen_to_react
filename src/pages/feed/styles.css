@@ -1,3 +1,9 @@
 .content {
     z-index: 0;
 }
+
+.posts-list {
+    height: 200px;
+    max-height: 500px;
+    overflow: visible;
+}
