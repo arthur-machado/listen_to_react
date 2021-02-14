@@ -60,6 +60,15 @@ class Navbar extends Component {
               <li className="user-icon">
                 <BsFillPersonFill size={25} />
               </li>
+              <li
+                style={{
+                  fontSize: "14px",
+                  whiteSpace: "nowrap",
+                  marginLeft: "-55px"
+                }}
+              >
+                <b>{this.props.userDisplayName}</b>
+              </li>
             </ul>
             <div className="wrapper-menu">
               <BsList size={30} onClick={this.toggle} />

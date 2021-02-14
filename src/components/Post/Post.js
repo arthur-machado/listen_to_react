@@ -23,8 +23,8 @@ class Post extends Component {
     return (
       <div className="card">
         <div className="user-info">
-          <img id="user-photo" alt="Foto do usuário" src={UserExample} />
-          <span id="username">@arthurmachado</span>
+          <img id="user-photo" alt="Foto do usuário" src={this.props.image} />
+          <span id="username" style={{whiteSpace: "nowrap"}}>{this.props.userDisplayName}</span>
           <span id="timestamp">Está ouvindo:</span>
         </div>
         <div className="side-buttons">
