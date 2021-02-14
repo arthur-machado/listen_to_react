@@ -4,6 +4,10 @@ import Navbar from "../../components/Navbar/Navbar";
 import "./styles.css";
 
 class Inicio extends Component {
+  redirect() {
+    window.location.href="http://localhost:8888/login"
+  };
+
   render() {
     return (
       <div className="background">
@@ -24,7 +28,7 @@ class Inicio extends Component {
               <h4 class="text-center">Entre agora</h4>
               <hr />
               <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">
+                <button class="btn btn-primary btn-block" onClick={this.redirect}>
                   Entrar com Spotify
                 </button>
               </div>
