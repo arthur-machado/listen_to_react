@@ -31,7 +31,7 @@ class Post extends Component {
           <ul>
             <BsMusicNoteList size={30} />
             {this.state.liked ? (
-              <BsHeartFill size={30} onClick={this.toggleLike}/>
+              <BsHeartFill size={30} onClick={this.toggleLike} color="#bd1515"/>
             ) : (
               <BsHeart size={30} onClick={this.toggleLike}/>
             )}
