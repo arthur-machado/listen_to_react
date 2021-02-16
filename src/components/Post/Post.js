@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import UserExample from "../../stylesheets/images/user-example.jpeg";
 import {
   BsMusicNoteList,
   BsHeart,

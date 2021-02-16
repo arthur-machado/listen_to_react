@@ -52,11 +52,11 @@ class Feed extends Component {
       },
     };
 
-    fetch("https://api.spotify.com/v1/me/player/recently-played?limit=1", data)
+    fetch("https://api.spotify.com/v1/me/player/currently-playing", data)
       .then((response) => response.json())
       .then((data) =>
         this.setState({
-          music: { recent: data.items[0].track.id } ,
+          music: { recent: data.item.id },
         })
       );
   };
@@ -73,18 +73,15 @@ class Feed extends Component {
           <Navbar userDisplayName={this.state.serverData.user.displayName} />
         </div>
         <div className="content">
-          <div className="posts-list">
-            <Post
-              image={this.state.serverData.user.image}
-              userDisplayName={this.state.serverData.user.displayName}
-              music={this.state.music.recent}
-            />
-            <Post
-              image={this.state.serverData.user.image}
-              userDisplayName={this.state.serverData.user.displayName}
-              music="6l7EWyRzo2mkMkxDKI8NZ7"
-            />
-          </div>
+          {this.state.serverData && this.state.music.recent && (
+            <div className="posts-list">
+              <Post
+                image={this.state.serverData.user.image}
+                userDisplayName={this.state.serverData.user.displayName}
+                music={this.state.music.recent}
+              />
+            </div>
+          )}
         </div>
       </div>
     );
