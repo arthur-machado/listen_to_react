@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Post from "../../components/Post/Post";
 import "./styles.css";
-import queryString from "query-string";
+import Cookies from 'js-cookie';
 
 class Feed extends Component {
   state = {
@@ -11,6 +11,7 @@ class Feed extends Component {
         displayName: "",
         id: "",
         image: null,
+        email: null,
       },
     },
     music: {
@@ -19,9 +20,8 @@ class Feed extends Component {
   };
 
   getUserData = () => {
-    let parse = queryString.parse(window.location.search);
-    let access_token = parse.access_token;
-
+    // Acessa o token do Spotify salvo nos cookies
+    let access_token = Cookies.get('access_token')
     let data = {
       headers: {
         Authorization: "Bearer " + access_token,
@@ -36,6 +36,7 @@ class Feed extends Component {
             user: {
               displayName: data.display_name,
               image: data.images[0]["url"],
+              email: data.email
             },
           },
         })
@@ -43,9 +44,7 @@ class Feed extends Component {
   };
 
   getCurrentPlay = () => {
-    let parse = queryString.parse(window.location.search);
-    let access_token = parse.access_token;
-
+    let access_token = Cookies.get('access_token')
     let data = {
       headers: {
         Authorization: "Bearer " + access_token,
@@ -73,7 +72,7 @@ class Feed extends Component {
           <Navbar userDisplayName={this.state.serverData.user.displayName} />
         </div>
         <div className="content">
-          {this.state.serverData && this.state.music.recent && (
+          
             <div className="posts-list">
               <Post
                 image={this.state.serverData.user.image}
@@ -81,7 +80,7 @@ class Feed extends Component {
                 music={this.state.music.recent}
               />
             </div>
-          )}
+          
         </div>
       </div>
     );

@@ -41,6 +41,7 @@ iframe {
   padding-left: 1rem;
   color: #363636;
   display: inline-flex;
+  width: 140px;
 }
 
 #user-photo {
