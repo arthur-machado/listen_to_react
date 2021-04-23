@@ -8,6 +8,7 @@ import {
   BsStar,
 } from "react-icons/bs";
 import "./post.css";
+import { Link } from "react-router-dom";
 
 class Post extends Component {
   state = {
@@ -23,16 +24,24 @@ class Post extends Component {
       <div className="card">
         <div className="user-info">
           <img id="user-photo" alt="Foto do usuário" src={this.props.image} />
-          <span id="username" style={{whiteSpace: "nowrap"}}>{this.props.userDisplayName}</span>
+          <Link to="/user">
+            <span id="username" style={{ whiteSpace: "nowrap" }}>
+              {this.props.userDisplayName}
+            </span>
+          </Link>
           <span id="timestamp">Está ouvindo:</span>
         </div>
         <div className="side-buttons">
           <ul>
             <BsMusicNoteList size={30} />
             {this.state.liked ? (
-              <BsHeartFill size={30} onClick={this.toggleLike} color="#bd1515"/>
+              <BsHeartFill
+                size={30}
+                onClick={this.toggleLike}
+                color="#bd1515"
+              />
             ) : (
-              <BsHeart size={30} onClick={this.toggleLike}/>
+              <BsHeart size={30} onClick={this.toggleLike} />
             )}
             <BsEnvelope size={30} />
             <BsTextLeft size={30} />
