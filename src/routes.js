@@ -10,7 +10,7 @@ function Routes() {
       <Switch>
         <Route exact={true} path="/" component={ Inicio } />
         <Route exact={true} path="/feed" component={ Feed } />
-        <Route exact={true} path="/user" component={ Perfil } />
+        <Route path="/user/:username" component={ Perfil } />
       </Switch>
     </BrowserRouter>
   );

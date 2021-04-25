@@ -12,6 +12,7 @@ class Feed extends Component {
         id: "",
         image: null,
         email: null,
+        spotifyID: ""
       },
     },
     music: {
@@ -36,7 +37,8 @@ class Feed extends Component {
             user: {
               displayName: data.display_name,
               image: data.images[0]["url"],
-              email: data.email
+              email: data.email,
+              username: data.id
             },
           },
         })
@@ -78,6 +80,7 @@ class Feed extends Component {
                 image={this.state.serverData.user.image}
                 userDisplayName={this.state.serverData.user.displayName}
                 music={this.state.music.recent}
+                username={this.state.serverData.user.username}
               />
             </div>
           

@@ -24,7 +24,7 @@ class Post extends Component {
       <div className="card">
         <div className="user-info">
           <img id="user-photo" alt="Foto do usuário" src={this.props.image} />
-          <Link to="/user">
+          <Link to={`/user/${this.props.username}`}>
             <span id="username" style={{ whiteSpace: "nowrap" }}>
               {this.props.userDisplayName}
             </span>

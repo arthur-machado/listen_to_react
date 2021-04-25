@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { API } from "../../utils/api";
+import { Col, Row, Container } from "reactstrap";
 import "./styles.css";
 
 class Perfil extends Component {
@@ -11,7 +12,8 @@ class Perfil extends Component {
   }
 
   getUserData = async () => {
-    const userData = await API.get("/user/arthurmachado2016");
+    const params = this.props.match.params;
+    const userData = await API.get(`/user/${params.username}`);
     this.setState({ userData: userData.data.data });
   };
 
@@ -25,9 +27,14 @@ class Perfil extends Component {
           <Navbar />
         </div>
         <div className="content">
-          <div className="center-grid">
-            <img src={this.state.userData.profileImage} alt="Foto do usuário"/>
-          </div>
+          <Container>
+            <Row className="justify-content-center">
+              <img
+                src={this.state.userData.profileImage}
+                alt="Foto do usuário"
+              />
+            </Row>
+          </Container>
         </div>
       </div>
     );
