@@ -9,15 +9,40 @@ import {
   BsList,
 } from "react-icons/bs";
 import WrapperMenu from "./WrapperMenu";
-
+import Cookies from "js-cookie";
 class Navbar extends Component {
   state = {
     wrapperIsOpen: false,
+    userDisplayName: "",
+    username: "",
   };
 
   toggle = () => {
     this.setState({ wrapperIsOpen: !this.state.wrapperIsOpen });
   };
+
+  getUserData = () => {
+    // Acessa o token do Spotify salvo nos cookies
+    let access_token = Cookies.get("access_token");
+    let data = {
+      headers: {
+        Authorization: "Bearer " + access_token,
+      },
+    };
+
+    fetch("https://api.spotify.com/v1/me", data)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState({
+          userDisplayName: data.display_name,
+          username: data.id,
+        })
+      );
+  };
+
+  componentDidMount() {
+    this.getUserData();
+  }
 
   render() {
     return (
@@ -64,10 +89,10 @@ class Navbar extends Component {
                 style={{
                   fontSize: "14px",
                   whiteSpace: "nowrap",
-                  marginLeft: "-55px"
+                  marginLeft: "-55px",
                 }}
               >
-                <b>{this.props.userDisplayName}</b>
+                <b>{this.state.userDisplayName}</b>
               </li>
             </ul>
             <div className="wrapper-menu">

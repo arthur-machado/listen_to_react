@@ -23,9 +23,9 @@ class Perfil extends Component {
   render() {
     return (
       <div className="container">
-        <div className="navbar">
+        {/* <div className="navbar">
           <Navbar />
-        </div>
+        </div> */}
         <div className="content">
           <Container>
             <Row className="justify-content-center">

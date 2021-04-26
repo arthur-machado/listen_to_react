@@ -70,9 +70,6 @@ class Feed extends Component {
   render() {
     return (
       <div className="container">
-        <div className="navbar">
-          <Navbar userDisplayName={this.state.serverData.user.displayName} />
-        </div>
         <div className="content">
           
             <div className="posts-list">

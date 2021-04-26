@@ -4,11 +4,11 @@ import "./footer.css";
 class Footer extends Component {
   render() {
     return (
-      <footer class="page-footer" id="footer">
-        <div class="footer-copyright">
-          <div id="w" class="container">
+      <footer className="page-footer" id="footer">
+        <div className="footer-copyright">
+          <div id="w" className="container">
             2021, todos os direitos reservados.
-            <a class="grey-text text-lighten-4 right" href="/">
+            <a className="grey-text text-lighten-4 right" href="/">
             Listen.to ©
             </a>
           </div>
