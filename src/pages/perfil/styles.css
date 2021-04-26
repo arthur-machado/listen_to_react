@@ -1,3 +1,133 @@
 .center-list {
-    min-height: 100vh;
+  margin: auto;
+  width: 60%;
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
 }
+
+/* Div do topo como foto e ações do usuário */
+.user-profile-info {
+  display: flex;
+  flex-direction: row;
+  border: 0;
+  border-bottom: 0.3px solid #d4d4d4;
+  padding-bottom: 2rem;
+  justify-content: center;
+}
+
+.user-photo {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.user-data {
+  margin-left: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-data h4 {
+  font-size: 22px;
+  margin-bottom: 2px;
+  margin-top: 0px;
+}
+
+.user-data span {
+  font-size: 18px;
+  font-weight: 200;
+  margin-right: 8px;
+}
+
+.user-data svg {
+  transition: 0.4s;
+}
+
+.user-data svg:hover {
+  cursor: pointer;
+  color: #1db954;
+  transform: scale(1.2, 1.2);
+}
+
+.user-actions {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.user-actions > button {
+  margin-right: 10px;
+}
+
+.user-numbers {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-numbers p {
+  padding-right: 2rem;
+}
+
+/* Top músicas do usuário */
+.user-top h2 {
+  margin-left: 2rem;
+  margin-top: 1.7rem;
+}
+
+.ranking-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 0.3px solid #d4d4d4;
+  padding: 1rem 95px;
+}
+
+.ranking-div h1 {
+  margin-right: 2rem;
+}
+
+.ranking-div img {
+  width: 68px;
+  height: 68px;
+  margin-right: 1.6rem;
+  border-radius: 7px;
+  box-shadow: 3px 9px 19px -1px rgba(0,0,0,0.67);
+  transition: 0.4s;
+}
+
+.ranking-div img:hover {
+  transform: scale(1.2, 1.2);
+  cursor: pointer;
+}
+
+
+.ranking-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ranking-info h4 {
+  margin-bottom: 5px;
+  margin-top: 0px;
+  font-size: 17px;
+}
+
+.ranking-info span {
+  margin-bottom: 5px;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.ranking-actions {
+  margin-left: 80px;
+  margin-top: 10px;
+}
+
+.ranking-actions svg {
+  margin-right: 2rem;
+  cursor: pointer;
+}
+
+/* Top artistas ouvidos */

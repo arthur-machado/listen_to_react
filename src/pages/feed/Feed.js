@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import Navbar from "../../components/Navbar/Navbar";
 import Post from "../../components/Post/Post";
 import "./styles.css";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 class Feed extends Component {
   state = {
@@ -12,7 +11,7 @@ class Feed extends Component {
         id: "",
         image: null,
         email: null,
-        spotifyID: ""
+        spotifyID: "",
       },
     },
     music: {
@@ -22,7 +21,7 @@ class Feed extends Component {
 
   getUserData = () => {
     // Acessa o token do Spotify salvo nos cookies
-    let access_token = Cookies.get('access_token')
+    let access_token = Cookies.get("access_token");
     let data = {
       headers: {
         Authorization: "Bearer " + access_token,
@@ -38,7 +37,7 @@ class Feed extends Component {
               displayName: data.display_name,
               image: data.images[0]["url"],
               email: data.email,
-              username: data.id
+              username: data.id,
             },
           },
         })
@@ -46,7 +45,7 @@ class Feed extends Component {
   };
 
   getCurrentPlay = () => {
-    let access_token = Cookies.get('access_token')
+    let access_token = Cookies.get("access_token");
     let data = {
       headers: {
         Authorization: "Bearer " + access_token,
@@ -71,16 +70,14 @@ class Feed extends Component {
     return (
       <div className="container">
         <div className="content">
-          
-            <div className="posts-list">
-              <Post
-                image={this.state.serverData.user.image}
-                userDisplayName={this.state.serverData.user.displayName}
-                music={this.state.music.recent}
-                username={this.state.serverData.user.username}
-              />
-            </div>
-          
+          <div className="posts-list">
+            <Post
+              image={this.state.serverData.user.image}
+              userDisplayName={this.state.serverData.user.displayName}
+              music={this.state.music.recent}
+              username={this.state.serverData.user.username}
+            />
+          </div>
         </div>
       </div>
     );
