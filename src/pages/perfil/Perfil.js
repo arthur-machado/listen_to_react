@@ -136,7 +136,7 @@ class Perfil extends Component {
                 </div>
                 <div className="ranking-actions">
                   <BsHeart size={28} />
-                  <BsStar size={28} />
+                  <BsStar size={32} />
                   <FaSpotify size={28} />
                 </div>
               </div>
@@ -155,7 +155,7 @@ class Perfil extends Component {
                 </div>
                 <div className="ranking-actions">
                   <BsHeart size={28} />
-                  <BsStar size={28} />
+                  <BsStar size={32} />
                   <FaSpotify size={28} />
                 </div>
               </div>
@@ -174,7 +174,7 @@ class Perfil extends Component {
                 </div>
                 <div className="ranking-actions">
                   <BsHeart size={28} />
-                  <BsStar size={28} />
+                  <BsStar size={32} />
                   <FaSpotify size={28} />
                 </div>
               </div>

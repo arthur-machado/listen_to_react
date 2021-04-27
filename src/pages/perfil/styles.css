@@ -71,8 +71,11 @@
 
 /* Top músicas do usuário */
 .user-top h2 {
-  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 1.7rem;
+  margin-right: 355px;
 }
 
 .ranking-div {
@@ -80,7 +83,8 @@
   flex-direction: row;
   align-items: center;
   border-bottom: 0.3px solid #d4d4d4;
-  padding: 1rem 95px;
+  padding: 1rem;
+  justify-content: center;
 }
 
 .ranking-div h1 {
@@ -105,6 +109,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 170px;
 }
 
 .ranking-info h4 {
@@ -170,9 +175,10 @@
     padding-right: 1rem;
   }
   .user-top h2 {
-    margin-left: 1rem;
-    margin-top: 0.8rem;
-    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    white-space: nowrap;
+    margin-right: 90px;
   }
   .user-actions {
     margin-top: 1.5rem;
@@ -184,7 +190,7 @@
     flex-direction: row;
     align-items: center;
     border-bottom: 0.3px solid #d4d4d4;
-    padding: 0.8rem 15px;
+    padding: 0.8rem 8px;
     text-overflow: ellipsis;
   }
 
@@ -202,19 +208,26 @@
     transition: 0.4s;
   }
 
+  .ranking-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 87px;
+  }
+
   .ranking-info h4 {
     margin-bottom: 5px;
     margin-top: 0px;
-    font-size: 18px;
-    white-space: nowrap;
+    font-size: 17px;
+    
   }
   .ranking-info span {
     margin-bottom: 5px;
     font-weight: 300;
     font-size: 13px;
+    white-space: nowrap;
   }
   .ranking-actions {
-    margin-left: 40px;
     margin-top: 10px;
     white-space: nowrap;
     display: flex;
