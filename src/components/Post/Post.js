@@ -52,7 +52,6 @@ class Post extends Component {
           title="post"
           src={`https://open.spotify.com/embed/track/${this.props.music}`}
           allowtransparency="true"
-          allow="encrypted-media"
           width="240"
           height="320"
           frameBorder="0"

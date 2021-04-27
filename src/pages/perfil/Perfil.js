@@ -34,9 +34,9 @@ class Perfil extends Component {
                 className="user-photo"
               />
               <div className="user-data">
-                <h4>Arthur Machado</h4>
+                <h4>{this.state.userData.name}</h4>
                 <div className="user-id">
-                  <span>arthurmachado2016</span>
+                  <span>{this.state.userData.spotifyId}</span>
                   <FaSpotify
                     size={20}
                     onClick={() =>
