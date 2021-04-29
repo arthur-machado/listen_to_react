@@ -5,43 +5,85 @@ import { FaSpotify } from "react-icons/fa";
 import { BsHeart, BsMusicNoteList, BsStar } from "react-icons/bs";
 import BtnSeguir from "../../components/BtnSeguir/BtnSeguir";
 import BtnMensagem from "../../components/BtnMensagem/BtnMensagem";
+import Cookies from "js-cookie";
 
 class Perfil extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { userData: [] };
+    this.state = {
+      userData: [],
+      tracks: [],
+    };
   }
 
   getUserData = async () => {
     const params = this.props.match.params;
-    const userData = await API.get(`/user/${params.username}`);
-    this.setState({ userData: userData.data.data });
+    const userData = await API.get(`/user-profile/${params.username}`, {
+      headers: {
+        access_token: Cookies.get("access_token"),
+      },
+    });
+    this.setState({
+      userData: userData.data.user,
+    });
+  };
+
+  getTopTracks = async () => {
+    const topTracks = await API.get("/user-top-tracks", {
+      headers: {
+        access_token: Cookies.get("access_token"),
+      },
+    });
+    this.setState({
+      tracks: topTracks.data.top_tracks,
+    });
   };
 
   componentDidMount() {
     this.getUserData();
+    this.getTopTracks();
   }
   render() {
+    const { userData, tracks } = this.state;
+    const topTracks = {
+      albumImages: [],
+      tracksNames: [],
+      albumsNames: [],
+      artistsNames: [],
+      trackSpotifyURL: [],
+      albumSpotifyURL: [],
+    };
+    for (var i = 0; i < tracks.length; i++) {
+      topTracks.albumImages.push(tracks[i]["album_image"]);
+      topTracks.tracksNames.push(tracks[i]["track_name"]);
+      topTracks.albumsNames.push(tracks[i]["album_name"]);
+      topTracks.artistsNames.push(tracks[i]["artist_name"]);
+      topTracks.trackSpotifyURL.push(tracks[i]["track_url"]);
+      topTracks.albumSpotifyURL.push(tracks[i]["album_url"]);
+      // console.log(tracks[i]["track"]["album"]);
+    }
+    console.log(tracks);
+
     return (
       <div className="container">
         <div className="content">
           <div className="center-list">
             <div className="user-profile-info">
               <img
-                src={this.state.userData.profileImage}
+                src={userData.profileImage}
                 alt="Foto do usuário"
                 className="user-photo"
               />
               <div className="user-data">
-                <h4>{this.state.userData.name}</h4>
+                <h4>{userData.name}</h4>
                 <div className="user-id">
-                  <span>{this.state.userData.spotifyId}</span>
+                  <span>{userData.spotifyId}</span>
                   <FaSpotify
                     size={20}
                     onClick={() =>
                       window.open(
-                        `https://open.spotify.com/user/${this.state.userData.spotifyId}`,
+                        `https://open.spotify.com/user/${userData.spotifyId}`,
                         "_blank"
                       )
                     }
@@ -53,13 +95,13 @@ class Perfil extends Component {
                 </div>
                 <div className="user-numbers">
                   <p>
-                    <b>15k</b> seguidores
+                    <b>{userData.followers}</b> seguidores
                   </p>
                   <p>
-                    <b>9</b> playlists
+                    <b>{userData.totalPlaylists}</b> playlists
                   </p>
                   <p>
-                    <b>15</b> reviews
+                    <b>{userData.reviews}</b> reviews
                   </p>
                 </div>
               </div>
@@ -67,56 +109,61 @@ class Perfil extends Component {
 
             <div className="user-top">
               <h2>Top músicas do mês</h2>
-
               <div className="ranking-div">
                 <h1>1</h1>
-                <img
-                  alt="Track"
-                  src="https://i.scdn.co/image/ab67616d00001e02f07ef193e0bb6a238ea37f0a"
-                />
+                <img alt="Track" src={topTracks.albumImages[0]} />
                 <div className="ranking-info">
-                  <h4>Welcome to Japan</h4>
-                  <span>The Strokes</span>
-                  <span>Comedown Machine</span>
+                  <h4>{topTracks.tracksNames[0]}</h4>
+                  <span>{topTracks.artistsNames[0]}</span>
+                  <span>{topTracks.albumsNames[0]}</span>
                 </div>
                 <div className="ranking-actions">
                   <BsHeart size={28} />
                   <BsMusicNoteList size={28} />
-                  <FaSpotify size={28} />
+                  <FaSpotify
+                    size={28}
+                    onClick={() =>
+                      window.open(topTracks.trackSpotifyURL[0], "_blank")
+                    }
+                  />
                 </div>
               </div>
               <div className="ranking-div">
                 <h1>2</h1>
-                <img
-                  alt="Track"
-                  src="https://i.scdn.co/image/ab67616d00001e02f07ef193e0bb6a238ea37f0a"
-                />
+                <img alt="Track" src={topTracks.albumImages[1]} />
                 <div className="ranking-info">
-                  <h4>Partners in Crime</h4>
-                  <span>The Strokes</span>
-                  <span>Comedown Machine</span>
+                  <h4>{topTracks.tracksNames[1]}</h4>
+                  <span>{topTracks.artistsNames[1]}</span>
+                  <span>{topTracks.albumsNames[1]}</span>
                 </div>
                 <div className="ranking-actions">
                   <BsHeart size={28} />
                   <BsMusicNoteList size={28} />
-                  <FaSpotify size={28} />
+                  <FaSpotify
+                    size={28}
+                    onClick={() =>
+                      window.open(topTracks.trackSpotifyURL[1], "_blank")
+                    }
+                  />
                 </div>
               </div>
               <div className="ranking-div">
                 <h1>3</h1>
-                <img
-                  alt="Track"
-                  src="https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36"
-                />
+                <img alt="Track" src={topTracks.albumImages[2]} />
                 <div className="ranking-info">
-                  <h4>Save Your Tears</h4>
-                  <span>The Weekend</span>
-                  <span>After Hours</span>
+                  <h4>{topTracks.tracksNames[2]}</h4>
+                  <span>{topTracks.artistsNames[2]}</span>
+                  <span>{topTracks.albumsNames[2]}</span>
                 </div>
                 <div className="ranking-actions">
                   <BsHeart size={28} />
                   <BsMusicNoteList size={28} />
-                  <FaSpotify size={28} />
+                  <FaSpotify
+                    size={28}
+                    onClick={() =>
+                      window.open(topTracks.trackSpotifyURL[2], "_blank")
+                    }
+                  />
                 </div>
               </div>
             </div>
@@ -137,7 +184,12 @@ class Perfil extends Component {
                 <div className="ranking-actions">
                   <BsHeart size={28} />
                   <BsStar size={32} />
-                  <FaSpotify size={28} />
+                  <FaSpotify
+                    size={28}
+                    // onClick={() =>
+                    //   window.open(topTracks.trackSpotifyURL[2], "_blank")
+                    // }
+                  />
                 </div>
               </div>
 
