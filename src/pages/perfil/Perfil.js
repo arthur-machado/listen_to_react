@@ -14,6 +14,7 @@ class Perfil extends Component {
     this.state = {
       userData: [],
       tracks: [],
+      artists: [],
     };
   }
 
@@ -40,12 +41,24 @@ class Perfil extends Component {
     });
   };
 
+  getTopArtists = async () => {
+    const topArtists = await API.get("/user-top-artists", {
+      headers: {
+        access_token: Cookies.get("access_token"),
+      },
+    });
+    this.setState({
+      artists: topArtists.data.top_artists,
+    });
+  };
+
   componentDidMount() {
     this.getUserData();
     this.getTopTracks();
+    this.getTopArtists();
   }
   render() {
-    const { userData, tracks } = this.state;
+    const { userData, tracks, artists } = this.state;
     const topTracks = {
       albumImages: [],
       tracksNames: [],
@@ -54,16 +67,26 @@ class Perfil extends Component {
       trackSpotifyURL: [],
       albumSpotifyURL: [],
     };
-    for (var i = 0; i < tracks.length; i++) {
+    for (let i = 0; i < tracks.length; i++) {
       topTracks.albumImages.push(tracks[i]["album_image"]);
       topTracks.tracksNames.push(tracks[i]["track_name"]);
       topTracks.albumsNames.push(tracks[i]["album_name"]);
       topTracks.artistsNames.push(tracks[i]["artist_name"]);
       topTracks.trackSpotifyURL.push(tracks[i]["track_url"]);
       topTracks.albumSpotifyURL.push(tracks[i]["album_url"]);
-      // console.log(tracks[i]["track"]["album"]);
     }
-    console.log(tracks);
+    const topArtists = {
+      artistsImages: [],
+      artistsNames: [],
+      artistsURL: [],
+      notas: [],
+    };
+    for (let x = 0; x < artists.length; x++) {
+      topArtists.artistsImages.push(artists[x]["artist_image"]);
+      topArtists.artistsNames.push(artists[x]["artist_name"]);
+      topArtists.artistsURL.push(artists[x]["artist_url"]);
+      topArtists.notas.push(artists[x]["nota"]);
+    }
 
     return (
       <div className="container">
@@ -171,14 +194,11 @@ class Perfil extends Component {
               <h2>Top artistas do mês</h2>
               <div className="ranking-div">
                 <h1>1</h1>
-                <img
-                  alt="Artist"
-                  src="https://i.scdn.co/image/ab6761610000517464d74f5985cb66b2f7b60e93"
-                />
+                <img alt="Artist" src={topArtists.artistsImages[0]} />
                 <div className="ranking-info">
-                  <h4>The Strokes</h4>
+                  <h4>{topArtists.artistsNames[0]}</h4>
                   <span>
-                    Nota: <b>4.7</b>
+                    Nota: <b>{topArtists.notas[0]}</b>
                   </span>
                 </div>
                 <div className="ranking-actions">
@@ -186,48 +206,52 @@ class Perfil extends Component {
                   <BsStar size={32} />
                   <FaSpotify
                     size={28}
-                    // onClick={() =>
-                    //   window.open(topTracks.trackSpotifyURL[2], "_blank")
-                    // }
+                    onClick={() =>
+                      window.open(topArtists.artistsURL[0], "_blank")
+                    }
                   />
                 </div>
               </div>
 
               <div className="ranking-div">
                 <h1>2</h1>
-                <img
-                  alt="Artist"
-                  src="https://i.scdn.co/image/928aa3585beb2b6624792519d0e50f5220491f63"
-                />
+                <img alt="Artist" src={topArtists.artistsImages[1]} />
                 <div className="ranking-info">
-                  <h4>Los Hermanos</h4>
+                  <h4>{topArtists.artistsNames[1]}</h4>
                   <span>
-                    Nota: <b>4.7</b>
+                    Nota: <b>{topArtists.notas[1]}</b>
                   </span>
                 </div>
                 <div className="ranking-actions">
                   <BsHeart size={28} />
                   <BsStar size={32} />
-                  <FaSpotify size={28} />
+                  <FaSpotify
+                    size={28}
+                    onClick={() =>
+                      window.open(topArtists.artistsURL[1], "_blank")
+                    }
+                  />
                 </div>
               </div>
 
               <div className="ranking-div">
                 <h1>3</h1>
-                <img
-                  alt="Artist"
-                  src="https://i.scdn.co/image/63d48514310a67c51a298d099edd0e6d9f9d61e9"
-                />
+                <img alt="Artist" src={topArtists.artistsImages[2]} />
                 <div className="ranking-info">
-                  <h4>O Terno</h4>
+                  <h4>{topArtists.artistsNames[2]}</h4>
                   <span>
-                    Nota: <b>4.7</b>
+                    Nota: <b>{topArtists.notas[2]}</b>
                   </span>
                 </div>
                 <div className="ranking-actions">
                   <BsHeart size={28} />
                   <BsStar size={32} />
-                  <FaSpotify size={28} />
+                  <FaSpotify
+                    size={28}
+                    onClick={() =>
+                      window.open(topArtists.artistsURL[2], "_blank")
+                    }
+                  />
                 </div>
               </div>
             </div>
