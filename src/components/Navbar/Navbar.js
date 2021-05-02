@@ -89,7 +89,7 @@ class Navbar extends Component {
                 style={{
                   fontSize: "14px",
                   whiteSpace: "nowrap",
-                  marginLeft: "-55px",
+                  marginLeft: "-60px",
                 }}
               >
                 <b>{this.state.userDisplayName}</b>

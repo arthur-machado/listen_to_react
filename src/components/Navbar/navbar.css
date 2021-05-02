@@ -33,12 +33,14 @@ nav {
 
 /* Navbar nas outras páginas */
 #nav-body {
+  width: 100vw;
   display: flex;
   position: relative;
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
-  padding: 7px 24px 8px;
+  padding: 7px 7rem 8px;
+  justify-content: center;
 }
 
 #nav-body .wrapper-menu {
@@ -55,7 +57,7 @@ nav {
 
 #nav-body ul li {
   list-style-type: none;
-  padding: 0px 35px;
+  padding: 0px 2.5rem;
   transition: 0.5s;
 }
 
@@ -66,10 +68,13 @@ nav {
 
 #nav-body .nav-title {
   font-family: Allerta Stencil;
+  position: relative;
   font-size: 33px;
   color: #000000;
   font-weight: normal;
   transition: 0.5s;
+  /* margin-right: 870px; */
+  margin-right: 78rem;
 }
 
 #nav-body .nav-title:hover {
@@ -97,11 +102,44 @@ nav {
 
 .user-icon {
   position: relative;
-  margin-left: 60%;
+  margin-left: 19rem;
+  /* margin-left: 50%; */
   bottom: 3px;
 }
 
-@media (max-width: 988px) {
+@media (max-width: 1290px) {
+  #nav-body {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+    padding: 7px 5rem 8px;
+  }
+
+  #nav-body ul li {
+    list-style-type: none;
+    padding: 0px 1.9rem;
+    transition: 0.5s;
+  }
+  #nav-body .nav-title {
+    font-family: Allerta Stencil;
+    position: relative;
+    font-size: 33px;
+    color: #000000;
+    font-weight: normal;
+    transition: 0.5s;
+    /* margin-right: 870px; */
+    margin-right: 68rem;
+  }
+  .user-icon {
+    position: relative;
+    margin-left: 19rem;
+    /* margin-left: 50%; */
+    bottom: 3px;
+  }
+}
+@media (max-width: 1070px) {
   #nav-body {
     display: flex;
     position: relative;
@@ -109,6 +147,9 @@ nav {
     justify-content: center;
     flex-direction: row-reverse;
     padding: 7px 24px 8px;
+  }
+  #nav-body .nav-title {
+    margin-right: 0px;
   }
 
   #nav-body .wrapper-menu {
