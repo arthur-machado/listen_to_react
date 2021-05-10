@@ -47,8 +47,7 @@ class Perfil extends Component {
             <BsMusicNoteList size={28} />
             <FaSpotify
               size={28}
-              // eslint-disable-next-line no-loop-func
-              onClick={() => window.open(topTracks[i].track_url, "_blank")}
+              // onClick={() => window.open(https://open.spotify.com/artist/${topTracks[i].track_id}, "_blank")}
             />
           </div>
         </div>
@@ -76,10 +75,9 @@ class Perfil extends Component {
             <BsStar size={32} />
             <FaSpotify
               size={28}
-              // eslint-disable-next-line no-loop-func
-              onClick={() =>
-                window.open(topArtists[i].artist_url, "_blank")
-              }
+              // onClick={() =>
+              //   window.open(`https://open.spotify.com/artist/${topArtists[i].artist_id}`, "_blank")
+              // }
             />
           </div>
         </div>
@@ -97,8 +95,6 @@ class Perfil extends Component {
     const { userData } = this.state;
     var topArtists = userData["top_artists"];
     var topTracks = userData["top_tracks"];
-
-    console.log(topArtists);
 
     return (
       <div className="container">
