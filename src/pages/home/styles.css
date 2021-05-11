@@ -77,7 +77,7 @@
 }
 
 .release-div span {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
 }
 
@@ -99,6 +99,8 @@
   display: flex;
   align-items: center;
   flex-direction: row;
+  padding: 1.5rem 0px;
+  border-bottom: 0.3px solid #d4d4d4;
 }
 
 .ranking-item h1 {
@@ -119,4 +121,60 @@
 .ranking-item img:hover {
   cursor: pointer;
   transform: scale(1.2, 1.2);
+}
+
+.score {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.score label {
+  font-weight: 700;
+  padding-left: 10px;
+}
+
+.blog {
+  margin: 2.5rem 0px;
+}
+
+.blog-post {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 0.3px solid #d4d4d4;
+  box-sizing: border-box;
+  border-radius: 7px;
+  padding: 10px;
+  margin: 1rem 0px;
+}
+
+.blog-post img {
+  width: 120px;
+  height: 120px;
+  padding: 0px 15px 0px 25px;
+}
+
+.blog-post h3 {
+  margin: 2px 0px 8px;
+  transition: 0.4s;
+}
+
+.blog-post h3:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.post-text {
+  padding: 6px;
+}
+
+.post-text span {
+  padding-top: 20px;
+  font-size: 14px;
+}
+
+.post-text p {
+  font-size: 14px;
+  font-weight: 300;
 }
