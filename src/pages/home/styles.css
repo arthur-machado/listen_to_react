@@ -1,5 +1,9 @@
+.home-content {
+  display: flex;
+}
+
 .left-side-content {
-  margin: 0px 15%;
+  margin: 0px 2% 15% 15%;
   width: 43%;
   margin-top: 2rem;
 }
@@ -101,11 +105,16 @@
   flex-direction: row;
   padding: 1.5rem 0px;
   border-bottom: 0.3px solid #d4d4d4;
+  justify-content: space-between;
+}
+
+.ranking-item > div {
+  display: flex;
 }
 
 .ranking-item h1 {
   font-size: 65px;
-  margin: 0px 1rem;
+  margin: 0px 2rem;
   color: #909090;
 }
 
@@ -129,6 +138,21 @@
   align-items: center;
 }
 
+.score .spotify-url {
+  display: flex;
+  margin: 0px 1rem;
+}
+
+.spotify-url svg {
+  transition: 0.4s;
+}
+
+.spotify-url svg:hover {
+  cursor: pointer;
+  color: #1db954;
+  transform: scale(1.2, 1.2);
+}
+
 .score label {
   font-weight: 700;
   padding-left: 10px;
@@ -147,6 +171,7 @@
   border-radius: 7px;
   padding: 10px;
   margin: 1rem 0px;
+  justify-content: space-between;
 }
 
 .blog-post img {
@@ -157,7 +182,6 @@
 
 .blog-post h3 {
   margin: 2px 0px 8px;
-  transition: 0.4s;
 }
 
 .blog-post h3:hover {
@@ -177,4 +201,88 @@
 .post-text p {
   font-size: 14px;
   font-weight: 300;
+}
+
+/* Conteúdo do lado direito */
+.right-side-content {
+  margin: 0px 3%;
+  margin-top: 8rem;
+  width: 30%;
+}
+
+.right-side-content .ranking-title {
+  display: flex;
+  align-items: baseline;
+}
+
+.ranking-title {
+  margin-bottom: 0.2rem;
+}
+
+.ranking-title h3 {
+  margin-right: 5px;
+}
+
+.ranking-title #listen-to {
+  font-family: Allerta Stencil;
+}
+
+.ranking-listen {
+  border: 0.3px solid #d4d4d4;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.rk-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 0.3px solid #d4d4d4;
+  padding: 0.5rem 1rem;
+}
+
+.rk-item img {
+  width: 60px;
+  height: 60px;
+  filter: drop-shadow(8px 8px 12px rgba(0, 0, 0, 0.25));
+  border-radius: 7px;
+  margin: 0px 12px;
+}
+
+.album-info {
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  line-height: 26px;
+}
+
+.album-info h4 {
+  margin: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 15px;
+  text-overflow: ellipsis;
+}
+
+.album-info span {
+  font-weight: 300;
+}
+
+.ver-mais {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.6rem;
+}
+
+.ver-mais span {
+  font-weight: 300;
+  padding: 0px;
+}
+
+.ver-mais span:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
