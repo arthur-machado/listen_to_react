@@ -309,3 +309,78 @@
   border-radius: 7px;
   margin: 0px 18px;
 }
+
+@media (max-width: 988px) {
+  .left-side-content {
+    margin: 0px 2%;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .home-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .releases {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .ranking-list {
+    display: flex;
+    flex-direction: column;
+    overflow-x: scroll;
+  }
+
+  .ranking-item {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0.5rem 0px 5px;
+    border-bottom: 0.3px solid #d4d4d4;
+    justify-content: space-between;
+  }
+
+  .release-div img {
+    width: 70px;
+    height: 70px;
+    filter: drop-shadow(8px 8px 12px rgba(0, 0, 0, 0.25));
+    border-radius: 7px;
+    transition: 0.4s;
+  }
+
+  .ranking-item h1 {
+    font-size: 40px;
+    margin: 15px 0.7rem;
+    color: #909090;
+  }
+
+  .ranking-info h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 15px;
+    text-overflow: ellipsis;
+  }
+
+  .ranking-item img {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(8px 8px 12px rgba(0, 0, 0, 0.25));
+    border-radius: 7px;
+    transition: 0.4s;
+    margin-right: 1.3rem;
+  }
+
+  .right-side-content {
+    margin: 0px 0%;
+    width: 100%;
+  }
+
+  .ver-mais span {
+    font-weight: 300;
+    padding: 0px;
+    font-size: 12px;
+  }
+}
