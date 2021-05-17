@@ -108,7 +108,7 @@ class Home extends Component {
                     </div>
                     <div className="ranking-actions">
                       <BsStar size={28} />
-                      <FaSpotify size={28} />
+                      <FaSpotify size={28} className="spotify-url" />
                     </div>
                   </div>
 
@@ -130,7 +130,7 @@ class Home extends Component {
                     </div>
                     <div className="ranking-actions">
                       <BsStar size={28} />
-                      <FaSpotify size={28} />
+                      <FaSpotify size={28} className="spotify-url" />
                     </div>
                   </div>
 
@@ -152,7 +152,7 @@ class Home extends Component {
                     </div>
                     <div className="ranking-actions">
                       <BsStar size={28} />
-                      <FaSpotify size={28} />
+                      <FaSpotify size={28} className="spotify-url" />
                     </div>
                   </div>
                 </div>
@@ -305,6 +305,44 @@ class Home extends Component {
                 </div>
                 <div className="ver-mais">
                   <span>VER MAIS</span>
+                </div>
+              </div>
+              <div className="my-scores">
+                <div className="ranking-title">
+                  <h3>Minhas Avaliações</h3>
+                </div>
+                <div className="my-scores-div">
+                  <div className="score-item">
+                    <img
+                      src="https://i.scdn.co/image/ab67616d00001e02926f43e7cce571e62720fd46"
+                      alt="Foto do Álbum"
+                    />
+                    <div className="album-info">
+                      <h4>Unorthodox Jukebox</h4>
+                      <span>Bruno Mars</span>
+                      <div className="score">
+                        <BsStarFill size={18} />
+                        <label>9.1</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="score-item">
+                    <img
+                      src="https://i.scdn.co/image/ab67616d00001e02926f43e7cce571e62720fd46"
+                      alt="Foto do Álbum"
+                    />
+                    <div className="album-info">
+                      <h4>Unorthodox Jukebox</h4>
+                      <span>Bruno Mars</span>
+                      <div className="score">
+                        <BsStarFill size={18} />
+                        <label>9.1</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="ver-mais">
+                    <span>VER MAIS</span>
+                  </div>
                 </div>
               </div>
             </div>

@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import "./navbar.css";
 import {
   BsFillBarChartFill,
-  BsMusicNoteList,
   BsChatSquareFill,
   BsGearFill,
   BsFillPersonFill,
   BsList,
 } from "react-icons/bs";
+import { CgFeed } from "react-icons/cg";
 import WrapperMenu from "./WrapperMenu";
 import Cookies from "js-cookie";
 class Navbar extends Component {
@@ -67,7 +67,7 @@ class Navbar extends Component {
                 <BsFillBarChartFill size={20} />
               </li>
               <li>
-                <BsMusicNoteList size={20} />
+                <CgFeed size={20} />
               </li>
               <li>
                 <BsChatSquareFill size={20} />
