@@ -3,8 +3,17 @@ import "./styles.css";
 import { FiSun } from "react-icons/fi";
 import { BsMoon, BsStarFill, BsStar } from "react-icons/bs";
 import { FaSpotify } from "react-icons/fa";
+import { API } from "../../utils/api";
+import Cookies from "js-cookie";
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      homeData: [],
+    };
+  }
   // Função que pega a hora atual e personaliza a mensagem
   getPeriodOfTheDay() {
     var today = new Date();
@@ -34,7 +43,39 @@ class Home extends Component {
     }
   }
 
+  getHomeData = async () => {
+    const homeData = await API.get("/home", {
+      headers: {
+        access_token: Cookies.get("access_token"),
+      },
+    });
+    this.setState({
+      homeData: homeData.data,
+    });
+  };
+
+  renderReleases(releases) {
+    const listOfDiv = [];
+    for (var i = 0; i < releases.length; i++) {
+      listOfDiv.push(
+        <div className="release-div" key={i + 1}>
+          <img src={releases[i].album_image} alt="Álbum" />
+          <h4>{releases[i].album_name}</h4>
+          <span>{releases[i].artist}</span>
+        </div>
+      );
+    }
+
+    return listOfDiv;
+  }
+
+  componentDidMount() {
+    this.getHomeData();
+  }
+
   render() {
+    const { homeData } = this.state;
+    var newReleases = homeData["new-releases"];
     return (
       <div className="container">
         <div className="content">
@@ -48,39 +89,7 @@ class Home extends Component {
                   <span>VER MAIS</span>
                 </div>
                 <div className="releases">
-                  {/* Divs das novidades */}
-                  <div className="release-div">
-                    <img
-                      src="https://i.scdn.co/image/ab67616d00001e0239eacaff515486b4b531d2f4"
-                      alt="Álbum"
-                    />
-                    <h4>i n t e r l u d e</h4>
-                    <span>J. Cole</span>
-                  </div>
-                  <div className="release-div">
-                    <img
-                      src="https://i.scdn.co/image/ab67616d00001e02f6a6f6a1485a9b163dedc618"
-                      alt="Álbum"
-                    />
-                    <h4>Better Mistakes</h4>
-                    <span>Bebe Rexha</span>
-                  </div>
-                  <div className="release-div">
-                    <img
-                      src="https://i.scdn.co/image/ab67616d00001e023f2c7bc651e1220df6562416"
-                      alt="Álbum"
-                    />
-                    <h4>What You Need</h4>
-                    <span>Don Toliver</span>
-                  </div>
-                  <div className="release-div">
-                    <img
-                      src="https://i.scdn.co/image/ab67616d00001e028c5b92bccc0b782670a90800"
-                      alt="Álbum"
-                    />
-                    <h4>Tiempo</h4>
-                    <span>Ozuna</span>
-                  </div>
+                  {newReleases ? this.renderReleases(newReleases) : ""}
                 </div>
               </div>
 
