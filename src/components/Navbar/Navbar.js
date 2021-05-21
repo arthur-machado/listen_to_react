@@ -8,6 +8,7 @@ import {
   BsList,
 } from "react-icons/bs";
 import { CgFeed } from "react-icons/cg";
+import ReactTooltip from "react-tooltip";
 import WrapperMenu from "./WrapperMenu";
 import Cookies from "js-cookie";
 class Navbar extends Component {
@@ -51,7 +52,7 @@ class Navbar extends Component {
       this.props.isIndexPage === true ? (
         <nav id="nav-index">
           <div id="nav-body-index">
-            <a className="nav-title" href="/">
+            <a className="nav-title" href="/home">
               Listen.to
             </a>
           </div>
@@ -64,10 +65,30 @@ class Navbar extends Component {
             </a>
             <ul>
               <li>
-                <BsFillBarChartFill size={20} />
+                <a
+                  className="navbar-link"
+                  href="/home"
+                  data-tip
+                  data-for="ranking-tip"
+                >
+                  <BsFillBarChartFill size={20} />
+                </a>
+                <ReactTooltip id="ranking-tip" place="bottom" effect="solid">
+                  <span>Rankings</span>
+                </ReactTooltip>
               </li>
               <li>
-                <CgFeed size={20} />
+                <a
+                  className="navbar-link"
+                  href="/feed"
+                  data-tip
+                  data-for="feed-tip"
+                >
+                  <CgFeed size={20} />
+                </a>
+                <ReactTooltip id="feed-tip" place="bottom" effect="solid">
+                  <span>Feed</span>
+                </ReactTooltip>
               </li>
               <li>
                 <BsChatSquareFill size={20} />
@@ -92,7 +113,14 @@ class Navbar extends Component {
                   marginLeft: "-60px",
                 }}
               >
-                <b>{this.state.userDisplayName}</b>
+                <b>
+                  <a
+                    className="navbar-link"
+                    href={`/user/${this.state.username}`}
+                  >
+                    {this.state.userDisplayName}
+                  </a>
+                </b>
               </li>
             </ul>
             <div className="wrapper-menu">

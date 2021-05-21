@@ -11,6 +11,15 @@ nav {
   z-index: 1;
 }
 
+.navbar-link {
+  color: #000000;
+  transition: 0.4s;
+}
+
+.navbar-link:hover {
+  color: #777777;
+}
+
 #nav-body-index {
   display: flex;
   align-items: center;
