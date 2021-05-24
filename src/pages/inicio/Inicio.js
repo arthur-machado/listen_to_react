@@ -21,7 +21,7 @@ class Inicio extends Component {
 
           <div className="login-form">
             <form
-              action="http://localhost:5000/login" // Encaminha para o endereço de login da API
+              action="http://18.116.235.11:8080/login" // Encaminha para o endereço de login da API
               method="get"
               name="loginForm"
             >

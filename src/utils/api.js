@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Endereço base da API
 export const API = axios.create({
-    baseURL: "http://localhost:5000/"
+    baseURL: "http://18.116.235.11:8080/"
 });
 
 // Endereço da API Spotify

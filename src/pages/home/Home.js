@@ -12,8 +12,28 @@ class Home extends Component {
 
     this.state = {
       homeData: [],
+      userDisplayName: ""
     };
   }
+
+  getUserData = () => {
+    // Acessa o token do Spotify salvo nos cookies
+    let access_token = Cookies.get("access_token");
+    let data = {
+      headers: {
+        Authorization: "Bearer " + access_token,
+      },
+    };
+
+    fetch("https://api.spotify.com/v1/me", data)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState({
+          userDisplayName: data.display_name,
+        })
+      );
+  };
+
   // Função que pega a hora atual e personaliza a mensagem
   getPeriodOfTheDay() {
     var today = new Date();
@@ -22,21 +42,21 @@ class Home extends Component {
     if (currentHour < 12) {
       return (
         <div className="welcome">
-          <h2>Bom dia, Arthur</h2>
+          <h2>Bom dia, {this.state.userDisplayName}</h2>
           <FiSun size={32} />
         </div>
       );
     } else if (currentHour < 18) {
       return (
         <div className="welcome">
-          <h2>Boa tarde, Arthur</h2>
+          <h2>Boa tarde, {this.state.userDisplayName}</h2>
           <FiSun size={32} />
         </div>
       );
     } else {
       return (
         <div className="welcome">
-          <h2>Boa noite, Arthur</h2>
+          <h2>Boa noite, {this.state.userDisplayName}</h2>
           <BsMoon size={32} />
         </div>
       );
@@ -71,6 +91,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.getHomeData();
+    this.getUserData();
   }
 
   render() {
