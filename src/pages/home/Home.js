@@ -12,7 +12,7 @@ class Home extends Component {
 
     this.state = {
       homeData: [],
-      userDisplayName: ""
+      userDisplayName: "",
     };
   }
 
@@ -152,6 +152,83 @@ class Home extends Component {
                       <div className="ranking-info">
                         <h4>{"<atrás/além>"}</h4>
                         <span>O Terno</span>
+                        <div className="score">
+                          <BsStarFill size={18} />
+                          <label>9.1</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="ranking-actions">
+                      <BsStar size={28} />
+                      <FaSpotify size={28} className="spotify-url" />
+                    </div>
+                  </div>
+
+                  <div className="ranking-item">
+                    <div>
+                      <h1>3</h1>
+                      <img
+                        src="https://i.scdn.co/image/ab67616d00001e027fcead687e99583072cc217b"
+                        alt="Álbum"
+                      />
+                      <div className="ranking-info">
+                        <h4>Beauty Behind The Madness</h4>
+                        <span>The Weekend</span>
+                        <div className="score">
+                          <BsStarFill size={18} />
+                          <label>9.1</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="ranking-actions">
+                      <BsStar size={28} />
+                      <FaSpotify size={28} className="spotify-url" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="week-ranking">
+                <div className="section-title">
+                  <h3>Podcasts da Semana</h3>
+                  <span>VER MAIS</span>
+                </div>
+                <div className="ranking-list">
+                  <div className="ranking-item">
+                    <div>
+                      <h1>1</h1>
+                      <img
+                        src="https://i.scdn.co/image/ab67656300005f1f37cfabbe7ce6610e79e584bb"
+                        alt="Álbum"
+                      />
+                      <div className="ranking-info">
+                        <h4>Podpah</h4>
+                        <span>O podcast mais zika da internet</span>
+                        <div className="score">
+                          <BsStarFill size={18} />
+                          <label>9.1</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="ranking-actions">
+                      <BsStar size={28} />
+                      <FaSpotify size={28} className="spotify-url" />
+                    </div>
+                  </div>
+
+                  <div className="ranking-item">
+                    <div>
+                      <h1>2</h1>
+                      <img
+                        src="https://i.scdn.co/image/58e4e737473db80f4fee1454b42f4d753c47e286"
+                        alt="Álbum"
+                      />
+                      <div className="ranking-info">
+                        <h4>Flow</h4>
+                        <span>
+                          Flow Podcast acontece todo dia de segunda à sexta,
+                          normalmente às 20h...
+                        </span>
                         <div className="score">
                           <BsStarFill size={18} />
                           <label>9.1</label>
