@@ -1,0 +1,93 @@
+.center-div {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  width: 60%;
+}
+
+.artist-header {
+  background-size: 60% 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 400px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.artist-tags {
+  display: flex;
+}
+
+.artist-info {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  padding: 1rem 2rem;
+}
+
+.artist-tags button {
+  pointer-events: none;
+  margin: 0.4rem 0px;
+  border-style: none;
+}
+
+.artist-info #artist-tag {
+  background-color: #d4fd8d;
+  color: #494949;
+  padding: 7px 20px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.artist-info #artist-name {
+  background-color: #fcff6c;
+  color: #000000;
+  font-weight: bolder;
+  font-size: 25px;
+  padding: 7px 20px;
+}
+
+.artist-info #artist-numbers {
+  color: #ffffff;
+  background-color: #000000;
+  font-size: 16px;
+  padding-left: 0px 20px;
+}
+
+.numbers {
+  display: flex;
+}
+
+.numbers p {
+  margin: 5px 12px;
+}
+
+.artist-score {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+}
+
+.artist-score button {
+  border-style: none;
+  margin: 0.4rem 0px;
+}
+
+.artist-score #avg {
+  background-color: #a6efff;
+  color: #494949;
+  padding: 7px 20px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.artist-score #score {
+  background-color: #ff8947;
+  color: #000000;
+  font-size: 30px;
+  font-weight: bolder;
+  padding: 2px 7px;
+}
