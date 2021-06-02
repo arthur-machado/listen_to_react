@@ -3,10 +3,11 @@
   display: flex;
   justify-content: center;
   width: 60%;
+  flex-direction: column;
 }
 
 .artist-header {
-  background-size: 60% 100%;
+  background-size: 60% 90%;
   background-position: top;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -15,10 +16,17 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  border-radius: 7px;
+  transition: all 0.7s;
+}
+
+.artist-header:hover {
+  background-size: 70% 100%;
 }
 
 .artist-tags {
   display: flex;
+  transition: 0.4s;
 }
 
 .artist-info {
@@ -32,6 +40,7 @@
   pointer-events: none;
   margin: 0.4rem 0px;
   border-style: none;
+  box-shadow: 5px 2px 19px 2px #0e0e0e;
 }
 
 .artist-info #artist-tag {
@@ -74,6 +83,7 @@
 .artist-score button {
   border-style: none;
   margin: 0.4rem 0px;
+  box-shadow: 5px 5px 19px 2px #0e0e0e;
 }
 
 .artist-score #avg {
@@ -90,4 +100,60 @@
   font-size: 30px;
   font-weight: bolder;
   padding: 2px 7px;
+}
+
+.rate-btn {
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 10px;
+  border: 2px solid #000;
+  width: 110px;
+  height: 32px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: 0.4s;
+}
+
+.rate-btn:hover {
+  color: #ffffff;
+  background-color: #000;
+  cursor: pointer;
+}
+
+.fan-btn {
+  background-color: #ddd8a8;
+  color: #000000;
+  border-radius: 10px;
+  border-style: none;
+  width: 110px;
+  height: 32px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: 0.4s;
+}
+
+.fan-btn:hover {
+  background-color: #bdb466;
+  cursor: pointer;
+}
+
+.sp-artist {
+  background-color: #71ad5c;
+  color: #ffffff;
+  border-radius: 10px;
+  border-style: none;
+  width: 110px;
+  height: 32px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: 0.4s;
+}
+
+.sp-artist:hover {
+  background: #3c6d2a;
+  cursor: pointer;
+}
+
+.top-artist-tracks {
+  margin: 2rem 0px;
 }
