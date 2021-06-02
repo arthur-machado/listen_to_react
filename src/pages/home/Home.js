@@ -203,7 +203,7 @@ class Home extends Component {
                       />
                       <div className="ranking-info">
                         <h4>Podpah</h4>
-                        <span>O podcast mais zika da internet</span>
+                        <span>Podpah</span>
                         <div className="score">
                           <BsStarFill size={18} />
                           <label>9.1</label>
@@ -224,10 +224,9 @@ class Home extends Component {
                         alt="Álbum"
                       />
                       <div className="ranking-info">
-                        <h4>Flow</h4>
+                        <h4>Flow Podcast</h4>
                         <span>
-                          Flow Podcast acontece todo dia de segunda à sexta,
-                          normalmente às 20h...
+                          Flow
                         </span>
                         <div className="score">
                           <BsStarFill size={18} />
@@ -245,12 +244,12 @@ class Home extends Component {
                     <div>
                       <h1>3</h1>
                       <img
-                        src="https://i.scdn.co/image/ab67616d00001e027fcead687e99583072cc217b"
+                        src="https://i.scdn.co/image/d7104f59c00d9a467fee8f96009d9fc451894bcb"
                         alt="Álbum"
                       />
                       <div className="ranking-info">
-                        <h4>Beauty Behind The Madness</h4>
-                        <span>The Weekend</span>
+                        <h4>Praia dos Ossos</h4>
+                        <span>Rádio Novelo</span>
                         <div className="score">
                           <BsStarFill size={18} />
                           <label>9.1</label>
