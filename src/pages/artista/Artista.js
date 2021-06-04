@@ -30,7 +30,7 @@ class Artista extends Component {
                       </p>
                     </div>
                   </button>
-                  <button id="artist-name">The Weekend</button>
+                  <button id="artist-name">The Weeknd</button>
                   <button id="artist-tag">ARTISTA</button>
                 </div>
               </div>
@@ -60,7 +60,7 @@ class Artista extends Component {
                     />
                     <div className="ranking-info">
                       <h4>Save Your Tears (with Ariana Grande) (Remix)</h4>
-                      <span>The Weekend, Ariana Grande</span>
+                      <span>The Weeknd, Ariana Grande</span>
                       <div className="score">
                         <BsStarFill size={18} />
                         <label>9.1</label>
@@ -82,7 +82,7 @@ class Artista extends Component {
                     />
                     <div className="ranking-info">
                       <h4>Blinding Lights</h4>
-                      <span>The Weekend</span>
+                      <span>The Weeknd</span>
                       <div className="score">
                         <BsStarFill size={18} />
                         <label>9.1</label>
@@ -104,7 +104,81 @@ class Artista extends Component {
                     />
                     <div className="ranking-info">
                       <h4>Save Your Tears</h4>
-                      <span>The Weekend</span>
+                      <span>The Weeknd</span>
+                      <div className="score">
+                        <BsStarFill size={18} />
+                        <label>9.1</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="ranking-actions">
+                    <BsStar size={28} />
+                    <FaSpotify size={28} className="spotify-url" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="artist-top-albuns">
+              <div className="section-title">
+                <h3>Top Álbuns</h3>
+                <span>VER MAIS</span>
+              </div>
+              <div className="ranking-list">
+                <div className="ranking-item">
+                  <div>
+                    <h1>1</h1>
+                    <img
+                      src="https://i.scdn.co/image/ab67616d00001e0281a3bb9348718b9703364c1c"
+                      alt="Álbum"
+                    />
+                    <div className="ranking-info">
+                      <h4>After Hours</h4>
+                      <span>The Weeknd</span>
+                      <div className="score">
+                        <BsStarFill size={18} />
+                        <label>9.1</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="ranking-actions">
+                    <BsStar size={28} />
+                    <FaSpotify size={28} className="spotify-url" />
+                  </div>
+                </div>
+
+                <div className="ranking-item">
+                  <div>
+                    <h1>2</h1>
+                    <img
+                      src="https://i.scdn.co/image/ab67616d00001e024718e2b124f79258be7bc452"
+                      alt="Álbum"
+                    />
+                    <div className="ranking-info">
+                      <h4>Starboy</h4>
+                      <span>The Weeknd</span>
+                      <div className="score">
+                        <BsStarFill size={18} />
+                        <label>9.1</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="ranking-actions">
+                    <BsStar size={28} />
+                    <FaSpotify size={28} className="spotify-url" />
+                  </div>
+                </div>
+
+                <div className="ranking-item">
+                  <div>
+                    <h1>3</h1>
+                    <img
+                      src="https://i.scdn.co/image/ab67616d00001e02bdb8178fbb193a382939fd93"
+                      alt="Álbum"
+                    />
+                    <div className="ranking-info">
+                      <h4>Beauty Behind The Madness</h4>
+                      <span>The Weeknd</span>
                       <div className="score">
                         <BsStarFill size={18} />
                         <label>9.1</label>
