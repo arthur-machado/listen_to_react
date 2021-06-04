@@ -192,6 +192,60 @@ class Artista extends Component {
                 </div>
               </div>
             </div>
+
+            <div className="discography">
+              <div className="section-title">
+                <h3>Discografia</h3>
+                <span>VER TUDO</span>
+              </div>
+              <div className="releases">
+                <div className="release-div">
+                  <img
+                    src="https://i.scdn.co/image/ab67616d00001e02274b406a7e18acebcf743079"
+                    alt="Álbum"
+                  />
+                  <h4>House Of Balloons (Original)</h4>
+                  <span>The Weeknd</span>
+                  <span>2021</span>
+                </div>
+                <div className="release-div">
+                  <img
+                    src="https://i.scdn.co/image/ab67616d00001e0212a76d1b13ef07188f7dfbc9"
+                    alt="Álbum"
+                  />
+                  <h4>The Highlights</h4>
+                  <span>The Weeknd</span>
+                  <span>2021</span>
+                </div>
+                <div className="release-div">
+                  <img
+                    src="https://i.scdn.co/image/ab67616d00001e0280880b62143e819e901d8465"
+                    alt="Álbum"
+                  />
+                  <h4>After Hours (Deluxe)</h4>
+                  <span>The Weeknd</span>
+                  <span>2020</span>
+                </div>
+                <div className="release-div">
+                  <img
+                    src="https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36"
+                    alt="Álbum"
+                  />
+                  <h4>After Hours</h4>
+                  <span>The Weeknd</span>
+                  <span>2020</span>
+                </div>
+                <div className="release-div">
+                  <img
+                    src="https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36"
+                    alt="Álbum"
+                  />
+                  <h4>After Hours</h4>
+                  <span>The Weeknd</span>
+                  <span>2020</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
