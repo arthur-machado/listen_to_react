@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BsStarFill, BsStar } from "react-icons/bs";
 import { FaSpotify } from "react-icons/fa";
+import { GrLike, GrDislike } from "react-icons/gr";
 import "./styles.css";
 
 class Artista extends Component {
@@ -235,14 +236,80 @@ class Artista extends Component {
                   <span>The Weeknd</span>
                   <span>2020</span>
                 </div>
-                <div className="release-div">
-                  <img
-                    src="https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36"
-                    alt="Álbum"
-                  />
-                  <h4>After Hours</h4>
-                  <span>The Weeknd</span>
-                  <span>2020</span>
+              </div>
+              <div className="comments">
+                <div className="section-title">
+                  <h3>Comentários</h3>
+                  <span>VER TUDO</span>
+                </div>
+                <div className="comments-list">
+                  <div className="comment-div">
+                    <form>
+                      <div className="add-comment">
+                        <img
+                          src="https://avatars.githubusercontent.com/u/50958424?v=4"
+                          alt="Foto de Usuário"
+                        />
+
+                        <input
+                          type="text"
+                          className="comment-box"
+                          required
+                          placeholder="Adicionar um comentário"
+                          maxLength={90}
+                        />
+                        <button type="submit" className="rate-btn">
+                          Enviar
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div className="comment">
+                    <img
+                      src="https://avatars.githubusercontent.com/u/50958424?v=4"
+                      alt="Foto de Usuário"
+                    />
+                    <div className="name-comment">
+                      <span>Arthur Machado</span>
+                      <p>
+                        Labore pariatur est eiusmod minim mollit labore tempor
+                        fugiat nulla exercitation Lorem.
+                      </p>
+                      <div className="comment-likes">
+                        <div className="like-actions">
+                          <GrLike size="16" />
+                          {"115"}
+                        </div>
+                        <div className="like-actions">
+                          <GrDislike size="16" />
+                          {"115"}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="comment">
+                    <img
+                      src="https://avatars.githubusercontent.com/u/50958424?v=4"
+                      alt="Foto de Usuário"
+                    />
+                    <div className="name-comment">
+                      <span>Arthur Machado</span>
+                      <p>
+                        Labore pariatur est eiusmod minim mollit labore tempor
+                        fugiat nulla exercitation Lorem.
+                      </p>
+                      <div className="comment-likes">
+                        <div className="like-actions">
+                          <GrLike size="16" />
+                          {"115"}
+                        </div>
+                        <div className="like-actions">
+                          <GrDislike size="16" />
+                          {"115"}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

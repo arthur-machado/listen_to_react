@@ -165,3 +165,203 @@
 .releases {
   margin-top: 2rem;
 }
+
+.comments {
+  margin-top: 2rem;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem 0px;
+}
+
+.comment-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.3px solid #d4d4d4;
+  padding-bottom: 1.5rem;
+}
+
+.comment-div img {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+}
+
+.comment-box {
+  background: transparent;
+  border: 0;
+  border-bottom: 0.3px solid #d4d4d4;
+}
+
+.add-comment {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.add-comment img {
+  margin: 0px 2rem;
+}
+
+.add-comment input {
+  width: 400px;
+  height: 2.5rem;
+  transition: 0.4s;
+  font-size: 16px;
+  color: #3d3d3d;
+  margin-right: 2.5rem;
+}
+
+.add-comment input:focus {
+  border-bottom: 0.3px solid #6d6d6d;
+  outline: none;
+}
+
+.add-comment input::placeholder {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.comment {
+  display: flex;
+  padding: 1.5rem 2rem;
+  align-items: center;
+  border-bottom: 0.3px solid #d4d4d4;
+}
+
+.comment img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.name-comment {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 2rem;
+}
+
+.name-comment span {
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.name-comment p {
+  margin: 0px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.comment-likes {
+  display: flex;
+  margin: 0.7rem 0px;
+}
+
+.like-actions {
+  display: flex;
+  align-items: center;
+  font-weight: 300;
+  font-size: 18px;
+  margin-right: 1.5rem;
+}
+
+.like-actions svg {
+  margin-right: 10px;
+}
+
+.like-actions svg:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 988px) {
+  .center-div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+  }
+  .artist-header {
+    background-size: 100% 90%;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 320px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-radius: 7px;
+    transition: all 0.7s;
+  }
+  .artist-header:hover {
+    background-size: 100% 90%;
+  }
+
+  .artist-info {
+    padding: 0.5rem 1rem;
+  }
+
+  .artist-info #artist-tag {
+    font-size: 13px;
+    padding: 3px 10px;
+  }
+
+  .artist-info #artist-name {
+    font-size: 18px;
+    padding: 3px 10px;
+  }
+
+  .numbers p {
+    margin: 2px 8px;
+  }
+
+  .artist-score {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+  }
+
+  .artist-score #avg {
+    padding: 3px 10px;
+    font-size: 13px;
+  }
+
+  .artist-score #score {
+    font-size: 23px;
+  }
+
+  .artist-info #artist-numbers {
+    font-size: 13px;
+    padding-left: 0px 14px;
+  }
+
+  .comment {
+    padding: 1.5rem 0rem;
+  }
+
+  .add-comment {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .add-comment img {
+    margin: 0px 0.7rem 0px 0px;
+  }
+
+  .add-comment input {
+    width: 200px;
+    margin: 1.5rem;
+  }
+  .add-comment button {
+    margin: 6rem -75% 0px;
+  }
+
+  .comment-div {
+    display: flex;
+    align-items: center;
+  }
+}
