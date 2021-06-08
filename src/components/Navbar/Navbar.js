@@ -46,6 +46,7 @@ class Navbar extends Component {
   }
 
   render() {
+    Cookies.set('user', this.state.username)
     return (
       // essa propriedade é passada para modificar a navbar
       // caso seja a página inicial

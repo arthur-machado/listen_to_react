@@ -3,9 +3,36 @@ import { BsStarFill, BsStar } from "react-icons/bs";
 import { FaSpotify } from "react-icons/fa";
 import { GrLike, GrDislike } from "react-icons/gr";
 import "./styles.css";
+import { API } from "../../utils/api";
+import Cookies from "js-cookie";
 
 class Artista extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      artistData: [],
+    };
+  }
+
+  getArtistData = async () => {
+    const params = this.props.match.params;
+    const artistData = await API.get(`/artist/${params.id}`, {
+      headers: {
+        access_token: Cookies.get("access_token"),
+      },
+    });
+    this.setState({
+      artistData: artistData.data.artist,
+    });
+  };
+
+  componentDidMount() {
+    this.getArtistData();
+  }
+
   render() {
+    const { artistData } = this.state;
     return (
       <div className="container">
         <div className="content">
@@ -13,7 +40,7 @@ class Artista extends Component {
             <div
               className="artist-header"
               style={{
-                backgroundImage: `url("https://i.scdn.co/image/37376dba0623c33923eae9d234e5e199b76d227f")`,
+                backgroundImage: `url(${artistData.profileImage})`,
               }}
             >
               <div className="artist-tags">
@@ -21,23 +48,23 @@ class Artista extends Component {
                   <button id="artist-numbers">
                     <div className="numbers">
                       <p>
-                        <b>15M</b> fãs
+                        <b>{artistData.numFans}</b> fãs
                       </p>
                       <p>
-                        <b>24°</b> ranking
+                        <b>{artistData.rankPosition}</b> ranking
                       </p>
                       <p>
-                        <b>201.245</b> reviews
+                        <b>{artistData.numReviews}</b> reviews
                       </p>
                     </div>
                   </button>
-                  <button id="artist-name">The Weeknd</button>
+                  <button id="artist-name">{artistData.name}</button>
                   <button id="artist-tag">ARTISTA</button>
                 </div>
               </div>
               <div className="artist-score">
                 <button id="avg">MÉDIA</button>
-                <button id="score">9.1</button>
+                <button id="score">{`${artistData.meanReviews}`}</button>
               </div>
             </div>
             <div className="user-actions">

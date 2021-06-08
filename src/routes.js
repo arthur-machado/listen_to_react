@@ -14,7 +14,7 @@ function Routes() {
         <Route exact={true} path="/feed" component={Feed} />
         <Route path="/user/:username" component={Perfil} />
         <Route exact={true} path="/home" component={Home} />
-        <Route path="/artist" component={Artista} />
+        <Route path="/artist/:id" component={Artista} />
       </Switch>
     </BrowserRouter>
   );
