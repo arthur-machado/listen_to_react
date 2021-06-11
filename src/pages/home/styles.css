@@ -81,9 +81,15 @@
   margin: 0.8rem 0px 0.2rem;
 }
 
-.release-div span {
+.release-div a span {
   font-size: 14px;
   font-weight: 300;
+  color: #000;
+  margin: 0px;
+}
+
+.release-div a {
+  margin-left: 0px;
 }
 
 .release-div span:hover {

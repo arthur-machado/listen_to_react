@@ -5,6 +5,7 @@ import { BsMoon, BsStarFill, BsStar } from "react-icons/bs";
 import { FaSpotify } from "react-icons/fa";
 import { API } from "../../utils/api";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 class Home extends Component {
   constructor(props) {
@@ -81,7 +82,7 @@ class Home extends Component {
         <div className="release-div" key={i + 1}>
           <img src={releases[i].album_image} alt="Álbum" />
           <h4>{releases[i].album_name}</h4>
-          <span>{releases[i].artist}</span>
+          <Link to={`/artist/${releases[i].artist_id}`}><span>{releases[i].artist}</span></Link>
         </div>
       );
     }

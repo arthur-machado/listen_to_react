@@ -27,12 +27,58 @@ class Artista extends Component {
     });
   };
 
+  renderAlbums(albums) {
+    const listOfDiv = [];
+    for (var i = 0; i < albums.length; i++) {
+      listOfDiv.push(
+        <div className="release-div" key={i + 1}>
+          <img src={albums[i].images[1].url} alt="Álbum" />
+          <h4>{albums[i].name}</h4>
+          <span>{albums[i].artists[0].name}</span>
+        </div>
+      );
+    }
+
+    return listOfDiv;
+  }
+
+  renderTopTracks(tracks) {
+    const listOfDiv = [];
+    for (var i = 0; i < tracks.length; i++) {
+      listOfDiv.push(
+        <div className="ranking-item" key={i + 1}>
+          <div>
+            <h1>{i + 1}</h1>
+            <img src={tracks[i].album_image} alt="Álbum" />
+            <div className="ranking-info">
+              <h4>{tracks[i].track_name}</h4>
+              <span>{tracks[i].artist_name}</span>
+              <div className="score">
+                <BsStarFill size={18} />
+                <label>{tracks[i].score}</label>
+              </div>
+            </div>
+          </div>
+          <div className="ranking-actions">
+            <BsStar size={28} />
+            <FaSpotify size={28} className="spotify-url" />
+          </div>
+        </div>
+      );
+    }
+
+    return listOfDiv;
+  }
+
   componentDidMount() {
     this.getArtistData();
   }
 
   render() {
     const { artistData } = this.state;
+    var albums = artistData["albums"];
+    var topTracks = artistData["top_tracks"];
+
     return (
       <div className="container">
         <div className="content">
@@ -64,13 +110,21 @@ class Artista extends Component {
               </div>
               <div className="artist-score">
                 <button id="avg">MÉDIA</button>
-                <button id="score">{`${artistData.meanReviews}`}</button>
+                <button id="score">{artistData.meanReviews}</button>
               </div>
             </div>
+
             <div className="user-actions">
               <button className="rate-btn">Classificar</button>
               <button className="fan-btn">Virar Fã</button>
-              <button className="sp-artist">Spotify</button>
+              <button
+                className="sp-artist"
+                onClick={() =>
+                  window.open(`${artistData.hrefSpProfile}`, "_blank")
+                }
+              >
+                Spotify
+              </button>
             </div>
 
             <div className="top-artist-tracks">
@@ -79,145 +133,7 @@ class Artista extends Component {
                 <span>VER MAIS</span>
               </div>
               <div className="ranking-list">
-                <div className="ranking-item">
-                  <div>
-                    <h1>1</h1>
-                    <img
-                      src="https://i.scdn.co/image/ab67616d00001e02764ac25ee0d41190d513475a"
-                      alt="Álbum"
-                    />
-                    <div className="ranking-info">
-                      <h4>Save Your Tears (with Ariana Grande) (Remix)</h4>
-                      <span>The Weeknd, Ariana Grande</span>
-                      <div className="score">
-                        <BsStarFill size={18} />
-                        <label>9.1</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ranking-actions">
-                    <BsStar size={28} />
-                    <FaSpotify size={28} className="spotify-url" />
-                  </div>
-                </div>
-
-                <div className="ranking-item">
-                  <div>
-                    <h1>2</h1>
-                    <img
-                      src="https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36"
-                      alt="Álbum"
-                    />
-                    <div className="ranking-info">
-                      <h4>Blinding Lights</h4>
-                      <span>The Weeknd</span>
-                      <div className="score">
-                        <BsStarFill size={18} />
-                        <label>9.1</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ranking-actions">
-                    <BsStar size={28} />
-                    <FaSpotify size={28} className="spotify-url" />
-                  </div>
-                </div>
-
-                <div className="ranking-item">
-                  <div>
-                    <h1>3</h1>
-                    <img
-                      src="https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36"
-                      alt="Álbum"
-                    />
-                    <div className="ranking-info">
-                      <h4>Save Your Tears</h4>
-                      <span>The Weeknd</span>
-                      <div className="score">
-                        <BsStarFill size={18} />
-                        <label>9.1</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ranking-actions">
-                    <BsStar size={28} />
-                    <FaSpotify size={28} className="spotify-url" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="artist-top-albuns">
-              <div className="section-title">
-                <h3>Top Álbuns</h3>
-                <span>VER MAIS</span>
-              </div>
-              <div className="ranking-list">
-                <div className="ranking-item">
-                  <div>
-                    <h1>1</h1>
-                    <img
-                      src="https://i.scdn.co/image/ab67616d00001e0281a3bb9348718b9703364c1c"
-                      alt="Álbum"
-                    />
-                    <div className="ranking-info">
-                      <h4>After Hours</h4>
-                      <span>The Weeknd</span>
-                      <div className="score">
-                        <BsStarFill size={18} />
-                        <label>9.1</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ranking-actions">
-                    <BsStar size={28} />
-                    <FaSpotify size={28} className="spotify-url" />
-                  </div>
-                </div>
-
-                <div className="ranking-item">
-                  <div>
-                    <h1>2</h1>
-                    <img
-                      src="https://i.scdn.co/image/ab67616d00001e024718e2b124f79258be7bc452"
-                      alt="Álbum"
-                    />
-                    <div className="ranking-info">
-                      <h4>Starboy</h4>
-                      <span>The Weeknd</span>
-                      <div className="score">
-                        <BsStarFill size={18} />
-                        <label>9.1</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ranking-actions">
-                    <BsStar size={28} />
-                    <FaSpotify size={28} className="spotify-url" />
-                  </div>
-                </div>
-
-                <div className="ranking-item">
-                  <div>
-                    <h1>3</h1>
-                    <img
-                      src="https://i.scdn.co/image/ab67616d00001e02bdb8178fbb193a382939fd93"
-                      alt="Álbum"
-                    />
-                    <div className="ranking-info">
-                      <h4>Beauty Behind The Madness</h4>
-                      <span>The Weeknd</span>
-                      <div className="score">
-                        <BsStarFill size={18} />
-                        <label>9.1</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ranking-actions">
-                    <BsStar size={28} />
-                    <FaSpotify size={28} className="spotify-url" />
-                  </div>
-                </div>
+                {topTracks ? this.renderTopTracks(topTracks) : ""}
               </div>
             </div>
 
@@ -227,42 +143,7 @@ class Artista extends Component {
                 <span>VER TUDO</span>
               </div>
               <div className="releases">
-                <div className="release-div">
-                  <img
-                    src="https://i.scdn.co/image/ab67616d00001e02274b406a7e18acebcf743079"
-                    alt="Álbum"
-                  />
-                  <h4>House Of Balloons (Original)</h4>
-                  <span>The Weeknd</span>
-                  <span>2021</span>
-                </div>
-                <div className="release-div">
-                  <img
-                    src="https://i.scdn.co/image/ab67616d00001e0212a76d1b13ef07188f7dfbc9"
-                    alt="Álbum"
-                  />
-                  <h4>The Highlights</h4>
-                  <span>The Weeknd</span>
-                  <span>2021</span>
-                </div>
-                <div className="release-div">
-                  <img
-                    src="https://i.scdn.co/image/ab67616d00001e0280880b62143e819e901d8465"
-                    alt="Álbum"
-                  />
-                  <h4>After Hours (Deluxe)</h4>
-                  <span>The Weeknd</span>
-                  <span>2020</span>
-                </div>
-                <div className="release-div">
-                  <img
-                    src="https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36"
-                    alt="Álbum"
-                  />
-                  <h4>After Hours</h4>
-                  <span>The Weeknd</span>
-                  <span>2020</span>
-                </div>
+                {albums ? this.renderAlbums(albums) : ""}
               </div>
               <div className="comments">
                 <div className="section-title">

@@ -162,6 +162,10 @@
   margin: 2rem 0px;
 }
 
+.discography span {
+  font-weight: 300;
+}
+
 .releases {
   margin-top: 2rem;
 }
