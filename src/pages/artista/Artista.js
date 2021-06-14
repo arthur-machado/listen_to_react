@@ -12,6 +12,9 @@ class Artista extends Component {
 
     this.state = {
       artistData: [],
+      username: "",
+      user_image: "",
+      comment: "",
     };
   }
 
@@ -27,9 +30,52 @@ class Artista extends Component {
     });
   };
 
+  getUserData = () => {
+    // Acessa o token do Spotify salvo nos cookies
+    let access_token = Cookies.get("access_token");
+    let data = {
+      headers: {
+        Authorization: "Bearer " + access_token,
+      },
+    };
+
+    fetch("https://api.spotify.com/v1/me", data)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState({
+          userDisplayName: data.display_name,
+          username: data.id,
+          user_image: data.images[0].url,
+        })
+      );
+  };
+
+  handleChange(event) {
+    let { value } = event.target;
+
+    this.setState({ comment: value });
+  }
+
+  createNewComment = async () => {
+    const { comment, username, userDisplayName, user_image } = this.state;
+    const params = this.props.match.params;
+    const json_obj = {
+      username: username,
+      user_display_name: userDisplayName,
+      user_display_image: user_image,
+      content: comment,
+    };
+    try {
+      await API.post(`/artist/${params.id}/comment`, json_obj);
+      window.location.reload();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   renderAlbums(albums) {
     const listOfDiv = [];
-    for (var i = 0; i < albums.length; i++) {
+    for (var i = 0; i <= 4; i++) {
       listOfDiv.push(
         <div className="release-div" key={i + 1}>
           <img src={albums[i].images[1].url} alt="Álbum" />
@@ -70,14 +116,44 @@ class Artista extends Component {
     return listOfDiv;
   }
 
+  renderComments(comments) {
+    const listOfDiv = [];
+    comments = comments.reverse();
+    for (var i = 0; i < comments.length; i++) {
+      listOfDiv.push(
+        <div className="comment">
+          <img src={comments[i].userProfileImage} alt="Foto de Usuário" />
+          <div className="name-comment">
+            <span>{comments[i].userDisplayName}</span>
+            <p>{comments[i].content}</p>
+            <div className="comment-likes">
+              <div className="like-actions">
+                <GrLike size="16" />
+                {comments[i].likes}
+              </div>
+              <div className="like-actions">
+                <GrDislike size="16" />
+                {comments[i].dislikes}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return listOfDiv;
+  }
+
   componentDidMount() {
     this.getArtistData();
+    this.getUserData();
   }
 
   render() {
     const { artistData } = this.state;
     var albums = artistData["albums"];
     var topTracks = artistData["top_tracks"];
+    var comments = artistData["comments"];
 
     return (
       <div className="container">
@@ -152,72 +228,27 @@ class Artista extends Component {
                 </div>
                 <div className="comments-list">
                   <div className="comment-div">
-                    <form>
-                      <div className="add-comment">
-                        <img
-                          src="https://avatars.githubusercontent.com/u/50958424?v=4"
-                          alt="Foto de Usuário"
-                        />
+                    <div className="add-comment">
+                      <img src={this.state.user_image} alt="Foto de Usuário" />
 
-                        <input
-                          type="text"
-                          className="comment-box"
-                          required
-                          placeholder="Adicionar um comentário"
-                          maxLength={90}
-                        />
-                        <button type="submit" className="rate-btn">
-                          Enviar
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                  <div className="comment">
-                    <img
-                      src="https://avatars.githubusercontent.com/u/50958424?v=4"
-                      alt="Foto de Usuário"
-                    />
-                    <div className="name-comment">
-                      <span>Arthur Machado</span>
-                      <p>
-                        Labore pariatur est eiusmod minim mollit labore tempor
-                        fugiat nulla exercitation Lorem.
-                      </p>
-                      <div className="comment-likes">
-                        <div className="like-actions">
-                          <GrLike size="16" />
-                          {"115"}
-                        </div>
-                        <div className="like-actions">
-                          <GrDislike size="16" />
-                          {"115"}
-                        </div>
-                      </div>
+                      <input
+                        type="text"
+                        className="comment-box"
+                        required
+                        placeholder="Adicionar um comentário"
+                        maxLength={90}
+                        onChange={(e) => this.handleChange(e)}
+                      />
+                      <button
+                        type="submit"
+                        className="rate-btn"
+                        onClick={() => this.createNewComment()}
+                      >
+                        Enviar
+                      </button>
                     </div>
                   </div>
-                  <div className="comment">
-                    <img
-                      src="https://avatars.githubusercontent.com/u/50958424?v=4"
-                      alt="Foto de Usuário"
-                    />
-                    <div className="name-comment">
-                      <span>Arthur Machado</span>
-                      <p>
-                        Labore pariatur est eiusmod minim mollit labore tempor
-                        fugiat nulla exercitation Lorem.
-                      </p>
-                      <div className="comment-likes">
-                        <div className="like-actions">
-                          <GrLike size="16" />
-                          {"115"}
-                        </div>
-                        <div className="like-actions">
-                          <GrDislike size="16" />
-                          {"115"}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  {comments ? this.renderComments(comments) : ""}
                 </div>
               </div>
             </div>
