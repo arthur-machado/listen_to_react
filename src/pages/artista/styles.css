@@ -262,6 +262,23 @@
 .comment-likes {
   display: flex;
   margin: 0.7rem 0px;
+  align-items: center;
+}
+
+.comment-likes label {
+  font-weight: 400;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.comment-likes label:hover {
+  text-decoration: underline;
+  color: #911010;
+}
+
+.comment-actions svg:hover{
+  cursor: pointer;
 }
 
 .like-actions {

@@ -1,0 +1,118 @@
+.modal {
+  width: 500px;
+  background: white;
+  filter: drop-shadow(8px 8px 12px rgba(0, 0, 0, 0.25));
+  z-index: 2;
+  position: absolute;
+  top: 30vh;
+  left: 35vw;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: 0.4s;
+}
+
+.modal-title {
+  display: flex;
+  align-items: center;
+  border-bottom: 0.3px solid #d4d4d4;
+  width: 100%;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.modal-title h4 {
+  margin-top: 0px;
+}
+
+.modal-title svg {
+  margin-bottom: 20px;
+  position: absolute;
+  right: 10px;
+  color: #4e4e4e;
+  cursor: pointer;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 1.5rem 1rem;
+  border-bottom: 0.3px solid #d4d4d4;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.actions {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.actions button {
+  margin: 0px 10px;
+}
+
+.toggle-button {
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 10px;
+  border: 2px solid #000;
+  width: 110px;
+  height: 32px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: 0.4s;
+}
+
+.toggle-button:hover {
+  color: #ffffff;
+  background-color: #000;
+  cursor: pointer;
+}
+
+.delete-button {
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #bd1515;
+  width: 110px;
+  height: 32px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: 0.4s;
+  border-style: none;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+  background-color: #8f0f0f;
+}
+
+.confirm-button {
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #71ad5c;
+  width: 110px;
+  height: 32px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: 0.4s;
+  border-style: none;
+}
+
+.confirm-button:hover {
+  background: #3c6d2a;
+  cursor: pointer;
+}
+
+@media (max-width: 988px) {
+  .modal {
+    width: 85%;
+    top: 30vh;
+    left: 0vw;
+    margin: 0px 2rem;
+  }
+}

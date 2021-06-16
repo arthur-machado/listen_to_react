@@ -5,6 +5,7 @@ import { GrLike, GrDislike } from "react-icons/gr";
 import "./styles.css";
 import { API } from "../../utils/api";
 import Cookies from "js-cookie";
+import Modal from "../../components/Modal/index";
 
 class Artista extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class Artista extends Component {
       username: "",
       user_image: "",
       comment: "",
+      showModal: false,
     };
   }
 
@@ -52,9 +54,14 @@ class Artista extends Component {
 
   handleChange(event) {
     let { value } = event.target;
-
     this.setState({ comment: value });
   }
+
+  showModal = (e) => {
+    this.setState({
+      showModal: !this.state.showModal,
+    });
+  };
 
   createNewComment = async () => {
     const { comment, username, userDisplayName, user_image } = this.state;
@@ -75,7 +82,7 @@ class Artista extends Component {
 
   renderAlbums(albums) {
     const listOfDiv = [];
-    for (var i = 0; i <= 4; i++) {
+    for (var i = 0; i <= 3; i++) {
       listOfDiv.push(
         <div className="release-div" key={i + 1}>
           <img src={albums[i].images[1].url} alt="Álbum" />
@@ -135,6 +142,16 @@ class Artista extends Component {
                 <GrDislike size="16" />
                 {comments[i].dislikes}
               </div>
+              {(this.state.username === comments[i].username) &&
+              (
+                <label
+                  onClick={(e) => {
+                    this.showModal(e);
+                  }}
+                >
+                  Excluir
+                </label>
+              )}
             </div>
           </div>
         </div>
@@ -154,10 +171,23 @@ class Artista extends Component {
     var albums = artistData["albums"];
     var topTracks = artistData["top_tracks"];
     var comments = artistData["comments"];
-
+    const blurContent = {
+      filter: "blur(8px)",
+    };
     return (
       <div className="container">
-        <div className="content">
+        <Modal
+          onClose={this.showModal}
+          show={this.state.showModal}
+          modalTitle={"Excluir Comentário"}
+          type="delete"
+        >
+          Tem certeza de que deseja excluir o comentário?
+        </Modal>
+        <div
+          className="content"
+          style={this.state.showModal ? blurContent : null}
+        >
           <div className="center-div">
             <div
               className="artist-header"
@@ -243,6 +273,7 @@ class Artista extends Component {
                         type="submit"
                         className="rate-btn"
                         onClick={() => this.createNewComment()}
+                        disabled={this.state.comment === ""}
                       >
                         Enviar
                       </button>
