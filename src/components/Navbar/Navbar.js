@@ -1,29 +1,30 @@
-import React, { Component } from "react";
-import "./navbar.css";
-import {
-  BsFillBarChartFill,
-  BsChatSquareFill,
-  BsGearFill,
-  BsFillPersonFill,
-  BsList,
-} from "react-icons/bs";
-import { CgFeed } from "react-icons/cg";
+import React, { useState, useEffect } from "react";
 import ReactTooltip from "react-tooltip";
-import WrapperMenu from "./WrapperMenu";
 import Cookies from "js-cookie";
-class Navbar extends Component {
-  state = {
-    wrapperIsOpen: false,
-    userDisplayName: "",
-    username: "",
+
+import {
+  NavIndex,
+  NavBodyIndex,
+  Nav,
+  NavBody,
+  RankingIcon,
+  FeedIcon,
+  ChatIcon,
+  SettingsIcon,
+  UserIcon,
+  WrapperIcon,
+} from "./navbar_styles";
+import WrapperMenu from "./WrapperMenu";
+
+const Navbar = (props) => {
+  const [wrapperIsOpen, setWrapper] = useState(false);
+  const [userData, setUserData] = useState(null);
+
+  const toogle = () => {
+    setWrapper(!wrapperIsOpen);
   };
 
-  toggle = () => {
-    this.setState({ wrapperIsOpen: !this.state.wrapperIsOpen });
-  };
-
-  getUserData = () => {
-    // Acessa o token do Spotify salvo nos cookies
+  async function getUserData() {
     let access_token = Cookies.get("access_token");
     let data = {
       headers: {
@@ -34,34 +35,29 @@ class Navbar extends Component {
     fetch("https://api.spotify.com/v1/me", data)
       .then((response) => response.json())
       .then((data) =>
-        this.setState({
-          userDisplayName: data.display_name,
-          username: data.id,
-        })
+        setUserData({ userDisplayName: data.display_name, username: data.id })
       );
-  };
-
-  componentDidMount() {
-    this.getUserData();
   }
 
-  render() {
-    Cookies.set('user', this.state.username)
-    return (
-      // essa propriedade é passada para modificar a navbar
-      // caso seja a página inicial
-      this.props.isIndexPage === true ? (
-        <nav id="nav-index">
-          <div id="nav-body-index">
-            <a className="nav-title" href="/home">
+  useEffect(() => {
+    getUserData();
+    Cookies.set("user", userData.username);
+  });
+
+  return (
+    <>
+      {props.isIndexPage ? (
+        <NavIndex>
+          <NavBodyIndex>
+            <a className="nav-title" href="/">
               Listen.to
             </a>
-          </div>
-        </nav>
+          </NavBodyIndex>
+        </NavIndex>
       ) : (
-        <nav id="nav">
-          <div id="nav-body">
-            <a className="nav-title" href="/home">
+        <Nav>
+          <NavBody>
+            <a className="nav-title" href="/">
               Listen.to
             </a>
             <ul>
@@ -72,7 +68,7 @@ class Navbar extends Component {
                   data-tip
                   data-for="ranking-tip"
                 >
-                  <BsFillBarChartFill size={20} />
+                  <RankingIcon />
                 </a>
                 <ReactTooltip id="ranking-tip" place="bottom" effect="solid">
                   <span>Rankings</span>
@@ -85,27 +81,27 @@ class Navbar extends Component {
                   data-tip
                   data-for="feed-tip"
                 >
-                  <CgFeed size={20} />
+                  <FeedIcon />
                 </a>
                 <ReactTooltip id="feed-tip" place="bottom" effect="solid">
                   <span>Feed</span>
                 </ReactTooltip>
               </li>
               <li>
-                <BsChatSquareFill size={20} />
+                <ChatIcon />
               </li>
               <li>
-                <BsGearFill size={20} />
+                <SettingsIcon />
               </li>
               <li>
                 <input
                   className="input-text"
                   type="text"
                   placeholder="Buscar artistas, músicas, usuários..."
-                ></input>
+                />
               </li>
               <li className="user-icon">
-                <BsFillPersonFill size={25} />
+                <UserIcon />
               </li>
               <li
                 style={{
@@ -114,25 +110,20 @@ class Navbar extends Component {
                   marginLeft: "-60px",
                 }}
               >
-                <b>
-                  <a
-                    className="navbar-link"
-                    href={`/user/${this.state.username}`}
-                  >
-                    {this.state.userDisplayName}
-                  </a>
-                </b>
+                <a className="navbar-link" href={`/user/arthurmachado2016`}>
+                  {userData.userDisplayName}
+                </a>
               </li>
             </ul>
             <div className="wrapper-menu">
-              <BsList size={30} onClick={this.toggle} />
+              <WrapperIcon size={30} onClick={() => toogle()} />
             </div>
-          </div>
-          <WrapperMenu visible={this.state.wrapperIsOpen} />
-        </nav>
-      )
-    );
-  }
-}
+          </NavBody>
+          <WrapperMenu visible={wrapperIsOpen} />
+        </Nav>
+      )}
+    </>
+  );
+};
 
 export default Navbar;
