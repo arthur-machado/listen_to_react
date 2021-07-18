@@ -170,7 +170,6 @@ class Artista extends Component {
     const { artistData } = this.state;
     var albums = artistData["albums"];
     var topTracks = artistData["top_tracks"];
-    var comments = artistData["comments"];
     const blurContent = {
       filter: "blur(8px)",
     };
