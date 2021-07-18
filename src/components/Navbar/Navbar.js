@@ -18,7 +18,7 @@ import WrapperMenu from "./WrapperMenu";
 
 const Navbar = (props) => {
   const [wrapperIsOpen, setWrapper] = useState(false);
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({});
 
   const toogle = () => {
     setWrapper(!wrapperIsOpen);
@@ -110,9 +110,12 @@ const Navbar = (props) => {
                   marginLeft: "-60px",
                 }}
               >
-                <a className="navbar-link" href={`/user/arthurmachado2016`}>
-                  {userData.userDisplayName}
-                </a>
+                {" "}
+                {userData && (
+                  <a className="navbar-link" href={`/user/${userData.username}`}>
+                    {userData.userDisplayName}
+                  </a>
+                )}
               </li>
             </ul>
             <div className="wrapper-menu">
