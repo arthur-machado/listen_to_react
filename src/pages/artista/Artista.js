@@ -279,7 +279,7 @@ class Artista extends Component {
                       </button>
                     </div>
                   </div>
-                  {comments ? this.renderComments(comments) : ""}
+                  {/* {comments ? this.renderComments(comments) : ""} */}
                 </div>
               </div>
             </div>
