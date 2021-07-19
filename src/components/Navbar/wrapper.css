@@ -2,6 +2,7 @@
   background-color: #fafafa;
   width: 250px;
   min-height: 100px;
+  max-height: 420px;
   z-index: 1;
   position: absolute;
   z-index: 1;
@@ -9,6 +10,20 @@
   top: 30px;
   box-shadow: 0px 2px 10px #00000066;
   border-radius: 6px;
+  overflow-y: scroll;
+}
+
+.wrapper-div::-webkit-scrollbar {
+  display: none;
+}
+
+.wrapper-div::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 10px;
+  border: 10px solid transparent;
+  border-top: 10px solid #fafafa;
 }
 
 .wrapper-list a {
