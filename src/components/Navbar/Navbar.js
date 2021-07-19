@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import ReactTooltip from "react-tooltip";
-import Cookies from "js-cookie";
+import React, { useState, useEffect } from 'react';
+import ReactTooltip from 'react-tooltip';
+import Cookies from 'js-cookie';
 
 import {
   NavIndex,
@@ -13,8 +13,8 @@ import {
   SettingsIcon,
   UserIcon,
   WrapperIcon,
-} from "./navbar_styles";
-import WrapperMenu from "./WrapperMenu";
+} from './navbar_styles';
+import WrapperMenu from './WrapperMenu';
 
 const Navbar = (props) => {
   const [wrapperIsOpen, setWrapper] = useState(false);
@@ -25,23 +25,23 @@ const Navbar = (props) => {
   };
 
   async function getUserData() {
-    let access_token = Cookies.get("access_token");
+    let access_token = Cookies.get('access_token');
     let data = {
       headers: {
-        Authorization: "Bearer " + access_token,
+        Authorization: 'Bearer ' + access_token,
       },
     };
 
-    fetch("https://api.spotify.com/v1/me", data)
+    fetch('https://api.spotify.com/v1/me', data)
       .then((response) => response.json())
       .then((data) =>
-        setUserData({ userDisplayName: data.display_name, username: data.id })
+        setUserData({ userDisplayName: data.display_name, username: data.id }),
       );
   }
 
   useEffect(() => {
     getUserData();
-    Cookies.set("user", userData.username);
+    Cookies.set('user', userData.username);
   });
 
   return (
@@ -88,10 +88,30 @@ const Navbar = (props) => {
                 </ReactTooltip>
               </li>
               <li>
-                <ChatIcon />
+                <a
+                  className="navbar-link"
+                  href="/#"
+                  data-tip
+                  data-for="chat-tip"
+                >
+                  <ChatIcon />
+                </a>
+                <ReactTooltip id="chat-tip" place="bottom" effect="solid">
+                  <span>Mensagens</span>
+                </ReactTooltip>
               </li>
               <li>
-                <SettingsIcon />
+                <a
+                  className="navbar-link"
+                  href="/#"
+                  data-tip
+                  data-for="settings-tip"
+                >
+                  <SettingsIcon />
+                </a>
+                <ReactTooltip id="settings-tip" place="bottom" effect="solid">
+                  <span>Ajustes</span>
+                </ReactTooltip>
               </li>
               <li>
                 <input
@@ -105,14 +125,17 @@ const Navbar = (props) => {
               </li>
               <li
                 style={{
-                  fontSize: "14px",
-                  whiteSpace: "nowrap",
-                  marginLeft: "-60px",
+                  fontSize: '14px',
+                  whiteSpace: 'nowrap',
+                  marginLeft: '-60px',
                 }}
               >
-                {" "}
+                {' '}
                 {userData && (
-                  <a className="navbar-link" href={`/user/${userData.username}`}>
+                  <a
+                    className="navbar-link"
+                    href={`/user/${userData.username}`}
+                  >
                     {userData.userDisplayName}
                   </a>
                 )}
