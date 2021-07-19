@@ -16,5 +16,10 @@
     list-style: none;
     margin-left: -40px;
     border-bottom: 0.3px solid #8d8d8d66;
+    display: flex;
+    align-items: center;
+}
 
+.list-item svg {
+    margin-right: 10px;
 }
