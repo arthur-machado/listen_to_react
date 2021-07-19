@@ -49,7 +49,7 @@ const Navbar = (props) => {
       {props.isIndexPage ? (
         <NavIndex>
           <NavBodyIndex>
-            <a className="nav-title" href="/">
+            <a className="nav-title" href="/home">
               Listen.to
             </a>
           </NavBodyIndex>
@@ -57,7 +57,7 @@ const Navbar = (props) => {
       ) : (
         <Nav>
           <NavBody>
-            <a className="nav-title" href="/">
+            <a className="nav-title" href="/home">
               Listen.to
             </a>
             <ul>
