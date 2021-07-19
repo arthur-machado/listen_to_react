@@ -1,10 +1,10 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Inicio from "./pages/inicio/Inicio";
-import Feed from "./pages/feed/Feed";
-import Perfil from "./pages/perfil/Perfil";
-import Home from "./pages/home/Home";
-import Artista from "./pages/artista/Artista";
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Inicio from './pages/index'
+import Feed from './pages/feed/Feed'
+import Profile from './pages/profile/Profile'
+import Home from './pages/home/Home'
+import Artist from './pages/artist/Artist'
 
 function Routes() {
   return (
@@ -12,12 +12,12 @@ function Routes() {
       <Switch>
         <Route exact={true} path="/" component={Inicio} />
         <Route exact={true} path="/feed" component={Feed} />
-        <Route path="/user/:username" component={Perfil} />
+        <Route path="/user/:username" component={Profile} />
         <Route exact={true} path="/home" component={Home} />
-        <Route path="/artist/:id" component={Artista} />
+        <Route path="/artist/:id" component={Artist} />
       </Switch>
     </BrowserRouter>
-  );
+  )
 }
 
-export default Routes;
+export default Routes
