@@ -1,37 +1,37 @@
-import React, { Component } from "react";
-import { API } from "../../utils/api";
-import "./styles.css";
-import { FaSpotify } from "react-icons/fa";
-import { BsHeart, BsMusicNoteList, BsStar } from "react-icons/bs";
-import BtnSeguir from "../../components/BtnSeguir/BtnSeguir";
-import BtnMensagem from "../../components/BtnMensagem/BtnMensagem";
-import Cookies from "js-cookie";
+import React, { Component } from 'react'
+import { API } from '../../utils/api'
+import './styles.css'
+import { FaSpotify } from 'react-icons/fa'
+import { BsHeart, BsMusicNoteList, BsStar } from 'react-icons/bs'
+import BtnSeguir from '../../components/BtnSeguir/BtnSeguir'
+import BtnMensagem from '../../components/BtnMensagem/BtnMensagem'
+import Cookies from 'js-cookie'
 
-class Perfil extends Component {
+class Profile extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       userData: [],
       tracks: [],
       artists: [],
-    };
+    }
   }
 
   getUserData = async () => {
-    const params = this.props.match.params;
+    const params = this.props.match.params
     const userData = await API.get(`/user-profile/${params.username}`, {
       headers: {
-        access_token: Cookies.get("access_token"),
+        access_token: Cookies.get('access_token'),
       },
-    });
+    })
     this.setState({
       userData: userData.data.user,
-    });
-  };
+    })
+  }
 
   renderTopTracks(topTracks) {
-    const listOfDiv = [];
+    const listOfDiv = []
     for (var i = 0; i < topTracks.length; i++) {
       listOfDiv.push(
         <div className="ranking-div" key={i + 1}>
@@ -50,15 +50,15 @@ class Perfil extends Component {
               // onClick={() => window.open(https://open.spotify.com/artist/${topTracks[i].track_id}, "_blank")}
             />
           </div>
-        </div>
-      );
+        </div>,
+      )
     }
 
-    return listOfDiv;
+    return listOfDiv
   }
 
   renderTopArtists(topArtists) {
-    const listOfDiv = [];
+    const listOfDiv = []
     for (var i = 0; i < topArtists.length; i++) {
       listOfDiv.push(
         <div className="ranking-div" key={i + 1}>
@@ -80,21 +80,21 @@ class Perfil extends Component {
               // }
             />
           </div>
-        </div>
-      );
+        </div>,
+      )
     }
 
-    return listOfDiv;
+    return listOfDiv
   }
 
   componentDidMount() {
-    this.getUserData();
+    this.getUserData()
   }
 
   render() {
-    const { userData } = this.state;
-    var topArtists = userData["top_artists"];
-    var topTracks = userData["top_tracks"];
+    const { userData } = this.state
+    var topArtists = userData['top_artists']
+    var topTracks = userData['top_tracks']
 
     return (
       <div className="container">
@@ -115,7 +115,7 @@ class Perfil extends Component {
                     onClick={() =>
                       window.open(
                         `https://open.spotify.com/user/${userData.spotifyId}`,
-                        "_blank"
+                        '_blank',
                       )
                     }
                   />
@@ -146,7 +146,7 @@ class Perfil extends Component {
               ) : (
                 <div className="ranking-div">
                   {/* Implementar depois uma page de loading para essas situações */}
-                  <span>Carregando...</span> 
+                  <span>Carregando...</span>
                 </div>
               )}
             </div>
@@ -163,8 +163,8 @@ class Perfil extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Perfil;
+export default Profile

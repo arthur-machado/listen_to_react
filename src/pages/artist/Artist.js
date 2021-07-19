@@ -1,103 +1,103 @@
-import React, { Component } from "react";
-import { BsStarFill, BsStar } from "react-icons/bs";
-import { FaSpotify } from "react-icons/fa";
-import { GrLike, GrDislike } from "react-icons/gr";
-import "./styles.css";
-import { API } from "../../utils/api";
-import Cookies from "js-cookie";
-import Modal from "../../components/Modal/index";
-import { createDocumentTitle } from "../../utils/utils";
+import React, { Component } from 'react'
+import { BsStarFill, BsStar } from 'react-icons/bs'
+import { FaSpotify } from 'react-icons/fa'
+import { GrLike, GrDislike } from 'react-icons/gr'
+import './styles.css'
+import { API } from '../../utils/api'
+import Cookies from 'js-cookie'
+import Modal from '../../components/Modal/index'
+import { createDocumentTitle } from '../../utils/utils'
 
-class Artista extends Component {
+class Artist extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       artistData: [],
-      username: "",
-      user_image: "",
-      comment: "",
+      username: '',
+      user_image: '',
+      comment: '',
       showModal: false,
-    };
+    }
   }
 
   getArtistData = async () => {
-    const params = this.props.match.params;
+    const params = this.props.match.params
     const artistData = await API.get(`/artist/${params.id}`, {
       headers: {
-        access_token: Cookies.get("access_token"),
+        access_token: Cookies.get('access_token'),
       },
-    });
+    })
     this.setState({
       artistData: artistData.data.artist,
-    });
-  };
+    })
+  }
 
   getUserData = () => {
     // Acessa o token do Spotify salvo nos cookies
-    let access_token = Cookies.get("access_token");
+    let access_token = Cookies.get('access_token')
     let data = {
       headers: {
-        Authorization: "Bearer " + access_token,
+        Authorization: 'Bearer ' + access_token,
       },
-    };
+    }
 
-    fetch("https://api.spotify.com/v1/me", data)
+    fetch('https://api.spotify.com/v1/me', data)
       .then((response) => response.json())
       .then((data) =>
         this.setState({
           userDisplayName: data.display_name,
           username: data.id,
           user_image: data.images[0].url,
-        })
-      );
-  };
+        }),
+      )
+  }
 
   handleChange(event) {
-    let { value } = event.target;
-    this.setState({ comment: value });
+    let { value } = event.target
+    this.setState({ comment: value })
   }
 
   showModal = (e) => {
     this.setState({
       showModal: !this.state.showModal,
-    });
-  };
+    })
+  }
 
   createNewComment = async () => {
-    const { comment, username, userDisplayName, user_image } = this.state;
-    const params = this.props.match.params;
+    const { comment, username, userDisplayName, user_image } = this.state
+    const params = this.props.match.params
     const json_obj = {
       username: username,
       user_display_name: userDisplayName,
       user_display_image: user_image,
       content: comment,
-    };
-    try {
-      await API.post(`/artist/${params.id}/comment`, json_obj);
-      window.location.reload();
-    } catch (e) {
-      console.log(e);
     }
-  };
+    try {
+      await API.post(`/artist/${params.id}/comment`, json_obj)
+      window.location.reload()
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   renderAlbums(albums) {
-    const listOfDiv = [];
+    const listOfDiv = []
     for (var i = 0; i <= 3; i++) {
       listOfDiv.push(
         <div className="release-div" key={i + 1}>
           <img src={albums[i].images[1].url} alt="Álbum" />
           <h4>{albums[i].name}</h4>
           <span>{albums[i].artists[0].name}</span>
-        </div>
-      );
+        </div>,
+      )
     }
 
-    return listOfDiv;
+    return listOfDiv
   }
 
   renderTopTracks(tracks) {
-    const listOfDiv = [];
+    const listOfDiv = []
     for (var i = 0; i < tracks.length; i++) {
       listOfDiv.push(
         <div className="ranking-item" key={i + 1}>
@@ -117,16 +117,16 @@ class Artista extends Component {
             <BsStar size={28} />
             <FaSpotify size={28} className="spotify-url" />
           </div>
-        </div>
-      );
+        </div>,
+      )
     }
 
-    return listOfDiv;
+    return listOfDiv
   }
 
   renderComments(comments) {
-    const listOfDiv = [];
-    comments = comments.reverse();
+    const listOfDiv = []
+    comments = comments.reverse()
     for (var i = 0; i < comments.length; i++) {
       listOfDiv.push(
         <div className="comment">
@@ -143,11 +143,10 @@ class Artista extends Component {
                 <GrDislike size="16" />
                 {comments[i].dislikes}
               </div>
-              {(this.state.username === comments[i].username) &&
-              (
+              {this.state.username === comments[i].username && (
                 <label
                   onClick={(e) => {
-                    this.showModal(e);
+                    this.showModal(e)
                   }}
                 >
                   Excluir
@@ -155,36 +154,36 @@ class Artista extends Component {
               )}
             </div>
           </div>
-        </div>
-      );
+        </div>,
+      )
     }
 
-    return listOfDiv;
+    return listOfDiv
   }
 
   componentDidMount() {
-    this.getArtistData();
-    this.getUserData();
+    this.getArtistData()
+    this.getUserData()
   }
 
   render() {
-    const { artistData } = this.state;
-    var albums = artistData["albums"];
-    var topTracks = artistData["top_tracks"];
+    const { artistData } = this.state
+    var albums = artistData['albums']
+    var topTracks = artistData['top_tracks']
     const blurContent = {
-      filter: "blur(8px)",
-    };
+      filter: 'blur(8px)',
+    }
 
     if (artistData.name) {
-      createDocumentTitle(artistData.name);
+      createDocumentTitle(artistData.name)
     }
-    
+
     return (
       <div className="container">
         <Modal
           onClose={this.showModal}
           show={this.state.showModal}
-          modalTitle={"Excluir Comentário"}
+          modalTitle={'Excluir Comentário'}
           type="delete"
         >
           Tem certeza de que deseja excluir o comentário?
@@ -231,7 +230,7 @@ class Artista extends Component {
               <button
                 className="sp-artist"
                 onClick={() =>
-                  window.open(`${artistData.hrefSpProfile}`, "_blank")
+                  window.open(`${artistData.hrefSpProfile}`, '_blank')
                 }
               >
                 Spotify
@@ -244,7 +243,7 @@ class Artista extends Component {
                 <span>VER MAIS</span>
               </div>
               <div className="ranking-list">
-                {topTracks ? this.renderTopTracks(topTracks) : ""}
+                {topTracks ? this.renderTopTracks(topTracks) : ''}
               </div>
             </div>
 
@@ -254,7 +253,7 @@ class Artista extends Component {
                 <span>VER TUDO</span>
               </div>
               <div className="releases">
-                {albums ? this.renderAlbums(albums) : ""}
+                {albums ? this.renderAlbums(albums) : ''}
               </div>
               <div className="comments">
                 <div className="section-title">
@@ -278,7 +277,7 @@ class Artista extends Component {
                         type="submit"
                         className="rate-btn"
                         onClick={() => this.createNewComment()}
-                        disabled={this.state.comment === ""}
+                        disabled={this.state.comment === ''}
                       >
                         Enviar
                       </button>
@@ -291,8 +290,8 @@ class Artista extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Artista;
+export default Artist
