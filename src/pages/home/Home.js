@@ -92,7 +92,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    createDocumentTitle('Home | Listen.to');
+    createDocumentTitle('Home');
     this.getHomeData();
     this.getUserData();
   }
