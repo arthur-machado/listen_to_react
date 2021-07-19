@@ -174,7 +174,11 @@ class Artista extends Component {
     const blurContent = {
       filter: "blur(8px)",
     };
-    createDocumentTitle(artistData.name);
+
+    if (artistData.name) {
+      createDocumentTitle(artistData.name);
+    }
+    
     return (
       <div className="container">
         <Modal
