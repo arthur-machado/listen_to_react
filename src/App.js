@@ -1,8 +1,8 @@
-import React from "react";
-import Navbar from "./components/Navbar/Navbar";
+import React from 'react'
+import Navbar from './components/Navbar/Navbar'
 
-import Routes from "./routes";
-import "./stylesheets/global.css";
+import Routes from './routes'
+import './stylesheets/global.css'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Navbar />
       <Routes />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
