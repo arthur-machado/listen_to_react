@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Post from "../../components/Post/Post";
 import "./styles.css";
 import Cookies from "js-cookie";
-
+import { createDocumentTitle } from "../../utils/utils";
 class Feed extends Component {
   state = {
     serverData: {
@@ -62,6 +62,7 @@ class Feed extends Component {
   };
 
   componentDidMount() {
+    createDocumentTitle('Feed');
     this.getUserData();
     this.getCurrentPlay();
   }
