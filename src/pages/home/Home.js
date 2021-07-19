@@ -6,6 +6,7 @@ import { FaSpotify } from "react-icons/fa";
 import { API } from "../../utils/api";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import { createDocumentTitle } from "../../utils/utils";
 
 class Home extends Component {
   constructor(props) {
@@ -91,6 +92,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    createDocumentTitle('Home | Listen.to');
     this.getHomeData();
     this.getUserData();
   }
