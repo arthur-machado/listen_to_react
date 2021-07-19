@@ -6,6 +6,7 @@ import "./styles.css";
 import { API } from "../../utils/api";
 import Cookies from "js-cookie";
 import Modal from "../../components/Modal/index";
+import { createDocumentTitle } from "../../utils/utils";
 
 class Artista extends Component {
   constructor(props) {
@@ -173,6 +174,7 @@ class Artista extends Component {
     const blurContent = {
       filter: "blur(8px)",
     };
+    createDocumentTitle(artistData.name);
     return (
       <div className="container">
         <Modal
