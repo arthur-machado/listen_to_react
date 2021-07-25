@@ -64,28 +64,11 @@ const Home = () => {
     setHomeData(homeData.data);
   }
 
-  function renderReleases(releases) {
-    const listOfDiv = [];
-    for (var i = 0; i < releases.length; i++) {
-      listOfDiv.push(
-        <div className="release-div" key={i + 1}>
-          <img src={releases[i].album_image} alt="Álbum" />
-          <h4>{releases[i].album_name}</h4>
-          <Link to={`/artist/${releases[i].artist_id}`}>
-            <span>{releases[i].artist}</span>
-          </Link>
-        </div>
-      );
-    }
-
-    return listOfDiv;
-  }
-
   useEffect(() => {
     createDocumentTitle("Home");
     getHomeData();
     getUserData();
-  });
+  }, []);
 
   var newReleases = homeData["new-releases"];
   return (
@@ -101,7 +84,20 @@ const Home = () => {
                 <span>VER MAIS</span>
               </div>
               <div className="releases">
-                {newReleases ? renderReleases(newReleases) : ""}
+                {newReleases
+                  ? newReleases.map((release) => (
+                      <div className="release-div" key={release.artist_id}>
+                        <img
+                          src={release.album_image}
+                          alt={release.album_name}
+                        />
+                        <h4>{release.album_name}</h4>
+                        <Link to={`/artist/${release.artist_id}`}>
+                          <span>{release.artist}</span>
+                        </Link>
+                      </div>
+                    ))
+                  : ""}
               </div>
             </div>
 
