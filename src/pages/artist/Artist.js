@@ -129,7 +129,7 @@ class Artist extends Component {
     comments = comments.reverse()
     for (var i = 0; i < comments.length; i++) {
       listOfDiv.push(
-        <div className="comment">
+        <div className="comment" key={i}>
           <img src={comments[i].userProfileImage} alt="Foto de Usuário" />
           <div className="name-comment">
             <span>{comments[i].userDisplayName}</span>
@@ -167,7 +167,8 @@ class Artist extends Component {
   }
 
   render() {
-    const { artistData } = this.state
+    const { artistData } = this.state;
+    const comments = artistData.comments;
     var albums = artistData['albums']
     var topTracks = artistData['top_tracks']
     const blurContent = {
@@ -283,7 +284,7 @@ class Artist extends Component {
                       </button>
                     </div>
                   </div>
-                  {/* {comments ? this.renderComments(comments) : ""} */}
+                  {comments ? this.renderComments(comments) : ""}
                 </div>
               </div>
             </div>
