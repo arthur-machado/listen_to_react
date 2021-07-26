@@ -70,21 +70,6 @@ const Artist = (props) => {
     }
   }
 
-  function renderAlbums(albums) {
-    const listOfDiv = [];
-    for (var i = 0; i <= 3; i++) {
-      listOfDiv.push(
-        <div className="release-div" key={i + 1}>
-          <img src={albums[i].images[1].url} alt="Álbum" />
-          <h4>{albums[i].name}</h4>
-          <span>{albums[i].artists[0].name}</span>
-        </div>,
-      );
-    }
-
-    return listOfDiv;
-  }
-
   useEffect(() => {
     getArtistData();
     getUserData();
@@ -193,7 +178,17 @@ const Artist = (props) => {
               <h3>Discografia</h3>
               <span>VER TUDO</span>
             </div>
-            <div className="releases">{albums ? renderAlbums(albums) : ''}</div>
+            <div className="releases">
+              {albums
+                ? albums.map((album) => (
+                    <div className="release-div">
+                      <img src={album.images[1].url} alt="Álbum" />
+                      <h4>{album.name}</h4>
+                      <span>{album.artists[0].name}</span>
+                    </div>
+                  ))
+                : ''}
+            </div>
             <div className="comments">
               <div className="section-title">
                 <h3>Comentários</h3>
