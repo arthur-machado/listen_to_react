@@ -1,88 +1,76 @@
-import React, { Component } from 'react'
-import { BsStarFill, BsStar } from 'react-icons/bs'
-import { FaSpotify } from 'react-icons/fa'
-import { GrLike, GrDislike } from 'react-icons/gr'
-import './styles.css'
-import { API } from '../../utils/api'
-import Cookies from 'js-cookie'
-import Modal from '../../components/Modal/index'
-import { createDocumentTitle } from '../../utils/utils'
+import React, { useState, useEffect, useCallback } from 'react';
+import { BsStarFill, BsStar } from 'react-icons/bs';
+import { FaSpotify } from 'react-icons/fa';
+import { GrLike, GrDislike } from 'react-icons/gr';
+import './styles.css';
+import { API } from '../../utils/api';
+import Cookies from 'js-cookie';
+import Modal from '../../components/Modal/index';
+import { createDocumentTitle } from '../../utils/utils';
 
-class Artist extends Component {
-  constructor(props) {
-    super(props)
+const Artist = (props) => {
+  const [artistData, setArtistData] = useState([]);
+  const [userDisplayName, setUserDisplayName] = useState('');
+  const [username, setUsername] = useState('');
+  const [userImage, setUserImage] = useState('');
+  const [comment, setComment] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
-    this.state = {
-      artistData: [],
-      username: '',
-      user_image: '',
-      comment: '',
-      showModal: false,
-    }
-  }
-
-  getArtistData = async () => {
-    const params = this.props.match.params
-    const artistData = await API.get(`/artist/${params.id}`, {
+  const getArtistData = useCallback(async () => {
+    const params = props.match.params;
+    const response = await API.get(`/artist/${params.id}`, {
       headers: {
         access_token: Cookies.get('access_token'),
       },
-    })
-    this.setState({
-      artistData: artistData.data.artist,
-    })
-  }
+    });
+    setArtistData(response.data.artist);
+  }, [props.match.params]);
 
-  getUserData = () => {
+  const getUserData = () => {
     // Acessa o token do Spotify salvo nos cookies
-    let access_token = Cookies.get('access_token')
+    let access_token = Cookies.get('access_token');
     let data = {
       headers: {
         Authorization: 'Bearer ' + access_token,
       },
-    }
+    };
 
     fetch('https://api.spotify.com/v1/me', data)
       .then((response) => response.json())
-      .then((data) =>
-        this.setState({
-          userDisplayName: data.display_name,
-          username: data.id,
-          user_image: data.images[0].url,
-        }),
-      )
+      .then((data) => {
+        setUserDisplayName(data.display_name);
+        setUsername(data.id);
+        setUserImage(data.images[0].url);
+      });
+  };
+
+  function handleChange(event) {
+    let { value } = event.target;
+    setComment(value);
   }
 
-  handleChange(event) {
-    let { value } = event.target
-    this.setState({ comment: value })
-  }
+  const toggleModal = (e) => {
+    setShowModal(!showModal);
+  };
 
-  showModal = (e) => {
-    this.setState({
-      showModal: !this.state.showModal,
-    })
-  }
-
-  createNewComment = async () => {
-    const { comment, username, userDisplayName, user_image } = this.state
-    const params = this.props.match.params
+  async function createNewComment() {
+    const params = props.match.params;
     const json_obj = {
       username: username,
       user_display_name: userDisplayName,
-      user_display_image: user_image,
+      user_display_image: userImage,
       content: comment,
-    }
+    };
     try {
-      await API.post(`/artist/${params.id}/comment`, json_obj)
-      window.location.reload()
+      await API.post(`/artist/${params.id}/comment`, json_obj);
+      // window.location.reload();
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
 
-  renderAlbums(albums) {
-    const listOfDiv = []
+  function renderAlbums(albums) {
+    const listOfDiv = [];
     for (var i = 0; i <= 3; i++) {
       listOfDiv.push(
         <div className="release-div" key={i + 1}>
@@ -90,14 +78,14 @@ class Artist extends Component {
           <h4>{albums[i].name}</h4>
           <span>{albums[i].artists[0].name}</span>
         </div>,
-      )
+      );
     }
 
-    return listOfDiv
+    return listOfDiv;
   }
 
-  renderTopTracks(tracks) {
-    const listOfDiv = []
+  function renderTopTracks(tracks) {
+    const listOfDiv = [];
     for (var i = 0; i < tracks.length; i++) {
       listOfDiv.push(
         <div className="ranking-item" key={i + 1}>
@@ -118,15 +106,15 @@ class Artist extends Component {
             <FaSpotify size={28} className="spotify-url" />
           </div>
         </div>,
-      )
+      );
     }
 
-    return listOfDiv
+    return listOfDiv;
   }
 
-  renderComments(comments) {
-    const listOfDiv = []
-    comments = comments.reverse()
+  function renderComments(comments) {
+    const listOfDiv = [];
+    comments = comments.reverse();
     for (var i = 0; i < comments.length; i++) {
       listOfDiv.push(
         <div className="comment" key={i}>
@@ -143,10 +131,10 @@ class Artist extends Component {
                 <GrDislike size="16" />
                 {comments[i].dislikes}
               </div>
-              {this.state.username === comments[i].username && (
+              {username === comments[i].username && (
                 <label
                   onClick={(e) => {
-                    this.showModal(e)
+                    toggleModal(e);
                   }}
                 >
                   Excluir
@@ -155,144 +143,136 @@ class Artist extends Component {
             </div>
           </div>
         </div>,
-      )
+      );
     }
 
-    return listOfDiv
+    return listOfDiv;
   }
 
-  componentDidMount() {
-    this.getArtistData()
-    this.getUserData()
+  useEffect(() => {
+    getArtistData();
+    getUserData();
+  }, [getArtistData]);
+
+  var comments = artistData.comments;
+  var albums = artistData['albums'];
+  var topTracks = artistData['top_tracks'];
+  const blurContent = {
+    filter: 'blur(8px)',
+  };
+
+  if (artistData.name) {
+    createDocumentTitle(artistData.name);
   }
 
-  render() {
-    const { artistData } = this.state;
-    const comments = artistData.comments;
-    var albums = artistData['albums']
-    var topTracks = artistData['top_tracks']
-    const blurContent = {
-      filter: 'blur(8px)',
-    }
+  return (
+    <div className="container">
+      <Modal
+        onClose={toggleModal}
+        show={showModal}
+        modalTitle={'Excluir Comentário'}
+        type="delete"
+      >
+        Tem certeza de que deseja excluir o comentário?
+      </Modal>
+      <div className="content" style={showModal ? blurContent : null}>
+        <div className="center-div">
+          <div
+            className="artist-header"
+            style={{
+              backgroundImage: `url(${artistData.profileImage})`,
+            }}
+          >
+            <div className="artist-tags">
+              <div className="artist-info">
+                <button id="artist-numbers">
+                  <div className="numbers">
+                    <p>
+                      <b>{artistData.numFans}</b> fãs
+                    </p>
+                    <p>
+                      <b>{artistData.rankPosition}</b> ranking
+                    </p>
+                    <p>
+                      <b>{artistData.numReviews}</b> reviews
+                    </p>
+                  </div>
+                </button>
+                <button id="artist-name">{artistData.name}</button>
+                <button id="artist-tag">ARTISTA</button>
+              </div>
+            </div>
+            <div className="artist-score">
+              <button id="avg">MÉDIA</button>
+              <button id="score">{artistData.meanReviews}</button>
+            </div>
+          </div>
 
-    if (artistData.name) {
-      createDocumentTitle(artistData.name)
-    }
-
-    return (
-      <div className="container">
-        <Modal
-          onClose={this.showModal}
-          show={this.state.showModal}
-          modalTitle={'Excluir Comentário'}
-          type="delete"
-        >
-          Tem certeza de que deseja excluir o comentário?
-        </Modal>
-        <div
-          className="content"
-          style={this.state.showModal ? blurContent : null}
-        >
-          <div className="center-div">
-            <div
-              className="artist-header"
-              style={{
-                backgroundImage: `url(${artistData.profileImage})`,
-              }}
+          <div className="user-actions">
+            <button className="rate-btn">Classificar</button>
+            <button className="fan-btn">Virar Fã</button>
+            <button
+              className="sp-artist"
+              onClick={() =>
+                window.open(`${artistData.hrefSpProfile}`, '_blank')
+              }
             >
-              <div className="artist-tags">
-                <div className="artist-info">
-                  <button id="artist-numbers">
-                    <div className="numbers">
-                      <p>
-                        <b>{artistData.numFans}</b> fãs
-                      </p>
-                      <p>
-                        <b>{artistData.rankPosition}</b> ranking
-                      </p>
-                      <p>
-                        <b>{artistData.numReviews}</b> reviews
-                      </p>
-                    </div>
-                  </button>
-                  <button id="artist-name">{artistData.name}</button>
-                  <button id="artist-tag">ARTISTA</button>
-                </div>
-              </div>
-              <div className="artist-score">
-                <button id="avg">MÉDIA</button>
-                <button id="score">{artistData.meanReviews}</button>
-              </div>
-            </div>
+              Spotify
+            </button>
+          </div>
 
-            <div className="user-actions">
-              <button className="rate-btn">Classificar</button>
-              <button className="fan-btn">Virar Fã</button>
-              <button
-                className="sp-artist"
-                onClick={() =>
-                  window.open(`${artistData.hrefSpProfile}`, '_blank')
-                }
-              >
-                Spotify
-              </button>
+          <div className="top-artist-tracks">
+            <div className="section-title">
+              <h3>Top Músicas</h3>
+              <span>VER MAIS</span>
             </div>
+            <div className="ranking-list">
+              {topTracks ? renderTopTracks(topTracks) : ''}
+            </div>
+          </div>
 
-            <div className="top-artist-tracks">
+          <div className="discography">
+            <div className="section-title">
+              <h3>Discografia</h3>
+              <span>VER TUDO</span>
+            </div>
+            <div className="releases">{albums ? renderAlbums(albums) : ''}</div>
+            <div className="comments">
               <div className="section-title">
-                <h3>Top Músicas</h3>
-                <span>VER MAIS</span>
-              </div>
-              <div className="ranking-list">
-                {topTracks ? this.renderTopTracks(topTracks) : ''}
-              </div>
-            </div>
-
-            <div className="discography">
-              <div className="section-title">
-                <h3>Discografia</h3>
+                <h3>Comentários</h3>
                 <span>VER TUDO</span>
               </div>
-              <div className="releases">
-                {albums ? this.renderAlbums(albums) : ''}
-              </div>
-              <div className="comments">
-                <div className="section-title">
-                  <h3>Comentários</h3>
-                  <span>VER TUDO</span>
-                </div>
-                <div className="comments-list">
-                  <div className="comment-div">
-                    <div className="add-comment">
-                      <img src={this.state.user_image} alt="Foto de Usuário" />
+              <div className="comments-list">
+                <div className="comment-div">
+                  <div className="add-comment">
+                    <img src={userImage} alt="Foto de Usuário" />
 
-                      <input
-                        type="text"
-                        className="comment-box"
-                        required
-                        placeholder="Adicionar um comentário"
-                        maxLength={90}
-                        onChange={(e) => this.handleChange(e)}
-                      />
-                      <button
-                        type="submit"
-                        className="rate-btn"
-                        onClick={() => this.createNewComment()}
-                        disabled={this.state.comment === ''}
-                      >
-                        Enviar
-                      </button>
-                    </div>
+                    <input
+                      type="text"
+                      className="comment-box"
+                      required
+                      placeholder="Adicionar um comentário"
+                      maxLength={90}
+                      onChange={(e) => handleChange(e)}
+                    />
+                    <button
+                      type="submit"
+                      className="rate-btn"
+                      onClick={() => createNewComment()}
+                      disabled={comment === ''}
+                    >
+                      Enviar
+                    </button>
                   </div>
-                  {comments ? this.renderComments(comments) : ""}
                 </div>
+                {comments ? renderComments(comments) : ''}
               </div>
             </div>
           </div>
         </div>
       </div>
-    )
-  }
-}
+    </div>
+  );
+};
 
-export default Artist
+export default Artist;
