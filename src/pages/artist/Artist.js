@@ -64,6 +64,7 @@ const Artist = (props) => {
     try {
       await API.post(`/artist/${params.id}/comment`, json_obj);
       // window.location.reload();
+      getArtistData();
     } catch (e) {
       console.log(e);
     }
@@ -77,71 +78,6 @@ const Artist = (props) => {
           <img src={albums[i].images[1].url} alt="Álbum" />
           <h4>{albums[i].name}</h4>
           <span>{albums[i].artists[0].name}</span>
-        </div>,
-      );
-    }
-
-    return listOfDiv;
-  }
-
-  function renderTopTracks(tracks) {
-    const listOfDiv = [];
-    for (var i = 0; i < tracks.length; i++) {
-      listOfDiv.push(
-        <div className="ranking-item" key={i + 1}>
-          <div>
-            <h1>{i + 1}</h1>
-            <img src={tracks[i].album_image} alt="Álbum" />
-            <div className="ranking-info">
-              <h4>{tracks[i].track_name}</h4>
-              <span>{tracks[i].artist_name}</span>
-              <div className="score">
-                <BsStarFill size={18} />
-                <label>{tracks[i].score}</label>
-              </div>
-            </div>
-          </div>
-          <div className="ranking-actions">
-            <BsStar size={28} />
-            <FaSpotify size={28} className="spotify-url" />
-          </div>
-        </div>,
-      );
-    }
-
-    return listOfDiv;
-  }
-
-  function renderComments(comments) {
-    const listOfDiv = [];
-    comments = comments.reverse();
-    for (var i = 0; i < comments.length; i++) {
-      listOfDiv.push(
-        <div className="comment" key={i}>
-          <img src={comments[i].userProfileImage} alt="Foto de Usuário" />
-          <div className="name-comment">
-            <span>{comments[i].userDisplayName}</span>
-            <p>{comments[i].content}</p>
-            <div className="comment-likes">
-              <div className="like-actions">
-                <GrLike size="16" />
-                {comments[i].likes}
-              </div>
-              <div className="like-actions">
-                <GrDislike size="16" />
-                {comments[i].dislikes}
-              </div>
-              {username === comments[i].username && (
-                <label
-                  onClick={(e) => {
-                    toggleModal(e);
-                  }}
-                >
-                  Excluir
-                </label>
-              )}
-            </div>
-          </div>
         </div>,
       );
     }
@@ -227,7 +163,28 @@ const Artist = (props) => {
               <span>VER MAIS</span>
             </div>
             <div className="ranking-list">
-              {topTracks ? renderTopTracks(topTracks) : ''}
+              {topTracks
+                ? topTracks.map((track, index) => (
+                    <div className="ranking-item" key={track.track_name}>
+                      <div>
+                        <h1>{index + 1}</h1>
+                        <img src={track.album_image} alt="Álbum" />
+                        <div className="ranking-info">
+                          <h4>{track.track_name}</h4>
+                          <span>{track.artist_name}</span>
+                          <div className="score">
+                            <BsStarFill size={18} />
+                            <label>{track.score}</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="ranking-actions">
+                        <BsStar size={28} />
+                        <FaSpotify size={28} className="spotify-url" />
+                      </div>
+                    </div>
+                  ))
+                : ''}
             </div>
           </div>
 
@@ -265,7 +222,40 @@ const Artist = (props) => {
                     </button>
                   </div>
                 </div>
-                {comments ? renderComments(comments) : ''}
+                {/* {comments ? renderComments(comments) : ''} */}
+                {comments
+                  ? comments.map((comm, index) => (
+                      <div className="comment" key={index}>
+                        <img
+                          src={comm.userProfileImage}
+                          alt="Foto de Usuário"
+                        />
+                        <div className="name-comment">
+                          <span>{comm.userDisplayName}</span>
+                          <p>{comm.content}</p>
+                          <div className="comment-likes">
+                            <div className="like-actions">
+                              <GrLike size="16" />
+                              {comm.likes}
+                            </div>
+                            <div className="like-actions">
+                              <GrDislike size="16" />
+                              {comm.dislikes}
+                            </div>
+                            {username === comm.username && (
+                              <label
+                                onClick={(e) => {
+                                  showModal(e);
+                                }}
+                              >
+                                Excluir
+                              </label>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  : ''}
               </div>
             </div>
           </div>
