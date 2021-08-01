@@ -220,7 +220,7 @@ const Artist = (props) => {
                             {userData.username === comm.username && (
                               <label
                                 onClick={(e) => {
-                                  showModal(e);
+                                  setShowModal(true);
                                 }}
                               >
                                 Excluir
