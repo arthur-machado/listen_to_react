@@ -68,10 +68,13 @@ const Artist = (props) => {
   }
 
   function renderAlbums(albums) {
-    let listDivs = [];
+    let listOfAlbums = [];
 
-    for (let i = 0; i <= 4; i++) {
-      listDivs.push(
+    for (let i = 0; i < albums.length; i++) {
+      if (i > 4) {
+        break;
+      }
+      listOfAlbums.push(
         <div className="release-div" key={albums[i].id}>
           <img src={albums[i].images[1].url} alt="Álbum" />
           <h4>{albums[i].name}</h4>
@@ -80,7 +83,7 @@ const Artist = (props) => {
       );
     }
 
-    return listDivs;
+    return listOfAlbums;
   }
 
   return (
