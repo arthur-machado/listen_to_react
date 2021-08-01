@@ -17,7 +17,11 @@ export function UserContextProvider({ children }) {
     fetch('https://api.spotify.com/v1/me', data)
       .then((response) => response.json())
       .then((data) =>
-        setUserData({ userDisplayName: data.display_name, username: data.id }),
+        setUserData({
+          userDisplayName: data.display_name,
+          username: data.id,
+          userImage: data.images[0].url,
+        }),
       );
   }
 
