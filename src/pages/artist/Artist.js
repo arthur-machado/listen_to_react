@@ -7,14 +7,14 @@ import { API } from '../../utils/api';
 import Cookies from 'js-cookie';
 import Modal from '../../components/Modal/index';
 import { createDocumentTitle } from '../../utils/utils';
+import { useUser } from '../../hooks/UserContext';
 
 const Artist = (props) => {
   const [artistData, setArtistData] = useState([]);
-  const [userDisplayName, setUserDisplayName] = useState('');
-  const [username, setUsername] = useState('');
-  const [userImage, setUserImage] = useState('');
+
   const [comment, setComment] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const userData = useUser();
 
   const getArtistData = useCallback(async () => {
     const params = props.match.params;
@@ -25,24 +25,6 @@ const Artist = (props) => {
     });
     setArtistData(response.data.artist);
   }, [props.match.params]);
-
-  const getUserData = () => {
-    // Acessa o token do Spotify salvo nos cookies
-    let access_token = Cookies.get('access_token');
-    let data = {
-      headers: {
-        Authorization: 'Bearer ' + access_token,
-      },
-    };
-
-    fetch('https://api.spotify.com/v1/me', data)
-      .then((response) => response.json())
-      .then((data) => {
-        setUserDisplayName(data.display_name);
-        setUsername(data.id);
-        setUserImage(data.images[0].url);
-      });
-  };
 
   function handleChange(event) {
     let { value } = event.target;
@@ -56,9 +38,9 @@ const Artist = (props) => {
   async function createNewComment() {
     const params = props.match.params;
     const json_obj = {
-      username: username,
-      user_display_name: userDisplayName,
-      user_display_image: userImage,
+      username: userData.username,
+      user_display_name: userData.userDisplayName,
+      user_display_image: userData.userImage,
       content: comment,
     };
     try {
@@ -72,7 +54,6 @@ const Artist = (props) => {
 
   useEffect(() => {
     getArtistData();
-    getUserData();
   }, [getArtistData]);
 
   var comments = artistData.comments;
@@ -197,7 +178,7 @@ const Artist = (props) => {
               <div className="comments-list">
                 <div className="comment-div">
                   <div className="add-comment">
-                    <img src={userImage} alt="Foto de Usuário" />
+                    <img src={userData.userImage} alt="Foto de Usuário" />
 
                     <input
                       type="text"
@@ -237,7 +218,7 @@ const Artist = (props) => {
                               <GrDislike size="16" />
                               {comm.dislikes}
                             </div>
-                            {username === comm.username && (
+                            {userData.username === comm.username && (
                               <label
                                 onClick={(e) => {
                                   showModal(e);
