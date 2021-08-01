@@ -23,7 +23,7 @@ export function UserContextProvider({ children }) {
 
   useEffect(() => {
     getUserData();
-  });
+  }, []);
 
   return (
     <UserContext.Provider value={userData}>{children}</UserContext.Provider>

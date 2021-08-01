@@ -6,12 +6,12 @@ import './stylesheets/global.css';
 
 function App() {
   return (
-    <UserContextProvider>
-      <div className="App">
+    <div className="App">
+      <UserContextProvider>
         <Navbar />
         <Routes />
-      </div>
-    </UserContextProvider>
+      </UserContextProvider>
+    </div>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useUser } from '../../hooks/UserContext';
+
 import ReactTooltip from 'react-tooltip';
-import Cookies from 'js-cookie';
 
 import {
   NavIndex,
@@ -18,30 +19,14 @@ import WrapperMenu from './WrapperMenu';
 
 const Navbar = (props) => {
   const [wrapperIsOpen, setWrapper] = useState(false);
-  const [userData, setUserData] = useState({});
+  const userData = useUser();
 
   const toogle = () => {
     setWrapper(!wrapperIsOpen);
   };
 
-  async function getUserData() {
-    let access_token = Cookies.get('access_token');
-    let data = {
-      headers: {
-        Authorization: 'Bearer ' + access_token,
-      },
-    };
-
-    fetch('https://api.spotify.com/v1/me', data)
-      .then((response) => response.json())
-      .then((data) =>
-        setUserData({ userDisplayName: data.display_name, username: data.id }),
-      );
-  }
-
   useEffect(() => {
-    getUserData();
-    Cookies.set('user', userData.username);
+    console.log(userData);
   });
 
   return (
