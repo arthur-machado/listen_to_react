@@ -198,7 +198,6 @@ const Artist = (props) => {
                     </button>
                   </div>
                 </div>
-                {/* {comments ? renderComments(comments) : ''} */}
                 {comments
                   ? comments.map((comm, index) => (
                       <div className="comment" key={index}>
