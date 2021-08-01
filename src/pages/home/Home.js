@@ -1,30 +1,17 @@
-import React, { useState, useEffect } from "react";
-import "./styles.css";
-import { FiSun } from "react-icons/fi";
-import { BsMoon, BsStarFill, BsStar } from "react-icons/bs";
-import { FaSpotify } from "react-icons/fa";
-import { API } from "../../utils/api";
-import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
-import { createDocumentTitle } from "../../utils/utils";
+import React, { useState, useEffect } from 'react';
+import './styles.css';
+import { FiSun } from 'react-icons/fi';
+import { BsMoon, BsStarFill, BsStar } from 'react-icons/bs';
+import { FaSpotify } from 'react-icons/fa';
+import { API } from '../../utils/api';
+import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
+import { createDocumentTitle } from '../../utils/utils';
+import { useUser } from '../../hooks/UserContext';
 
 const Home = () => {
   const [homeData, setHomeData] = useState([]);
-  const [userDisplayName, setUserDisplayName] = useState("");
-
-  async function getUserData() {
-    // Acessa o token do Spotify salvo nos cookies
-    let access_token = Cookies.get("access_token");
-    let data = {
-      headers: {
-        Authorization: "Bearer " + access_token,
-      },
-    };
-
-    fetch("https://api.spotify.com/v1/me", data)
-      .then((response) => response.json())
-      .then((data) => setUserDisplayName(data.display_name));
-  }
+  const userData = useUser();
 
   // Função que pega a hora atual e personaliza a mensagem
   function getPeriodOfTheDay() {
@@ -34,21 +21,21 @@ const Home = () => {
     if (currentHour < 12) {
       return (
         <div className="welcome">
-          <h2>Bom dia, {userDisplayName}</h2>
+          <h2>Bom dia, {userData.userDisplayName}</h2>
           <FiSun size={32} />
         </div>
       );
     } else if (currentHour < 18) {
       return (
         <div className="welcome">
-          <h2>Boa tarde, {userDisplayName}</h2>
+          <h2>Boa tarde, {userData.userDisplayName}</h2>
           <FiSun size={32} />
         </div>
       );
     } else {
       return (
         <div className="welcome">
-          <h2>Boa noite, {userDisplayName}</h2>
+          <h2>Boa noite, {userData.userDisplayName}</h2>
           <BsMoon size={32} />
         </div>
       );
@@ -56,21 +43,20 @@ const Home = () => {
   }
 
   async function getHomeData() {
-    const homeData = await API.get("/home", {
+    const homeData = await API.get('/home', {
       headers: {
-        access_token: Cookies.get("access_token"),
+        access_token: Cookies.get('access_token'),
       },
     });
     setHomeData(homeData.data);
   }
 
   useEffect(() => {
-    createDocumentTitle("Home");
+    createDocumentTitle('Home');
     getHomeData();
-    getUserData();
   }, []);
 
-  var newReleases = homeData["new-releases"];
+  var newReleases = homeData['new-releases'];
   return (
     <div className="container">
       <div className="content">
@@ -97,7 +83,7 @@ const Home = () => {
                         </Link>
                       </div>
                     ))
-                  : ""}
+                  : ''}
               </div>
             </div>
 
@@ -137,7 +123,7 @@ const Home = () => {
                       alt="Álbum"
                     />
                     <div className="ranking-info">
-                      <h4>{"<atrás/além>"}</h4>
+                      <h4>{'<atrás/além>'}</h4>
                       <span>O Terno</span>
                       <div className="score">
                         <BsStarFill size={18} />
@@ -264,7 +250,7 @@ const Home = () => {
                   </span>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nullam in interdum nulla.{" "}
+                    Nullam in interdum nulla.{' '}
                   </p>
                 </div>
                 <img
