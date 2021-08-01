@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useUser } from '../../hooks/UserContext';
 
 import ReactTooltip from 'react-tooltip';
@@ -24,10 +24,6 @@ const Navbar = (props) => {
   const toogle = () => {
     setWrapper(!wrapperIsOpen);
   };
-
-  useEffect(() => {
-    console.log(userData);
-  });
 
   return (
     <>
