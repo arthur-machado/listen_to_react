@@ -162,7 +162,7 @@ const Artist = (props) => {
             <div className="releases">
               {albums
                 ? albums.map((album) => (
-                    <div className="release-div">
+                    <div className="release-div" key={album.id}>
                       <img src={album.images[1].url} alt="Álbum" />
                       <h4>{album.name}</h4>
                       <span>{album.artists[0].name}</span>
